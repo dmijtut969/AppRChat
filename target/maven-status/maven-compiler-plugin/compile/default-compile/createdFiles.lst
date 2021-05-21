@@ -1,4 +1,4 @@
-application\SecondaryController.class
 module-info.class
+application\SecondaryController.class
+application\IniciarSesionController.class
 application\App.class
-application\PrimaryController.class

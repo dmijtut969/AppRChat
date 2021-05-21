@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(#FF3366,#BA265D);" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RegistroController">
+   <children>
+      <ImageView fitHeight="147.0" fitWidth="298.0" layoutX="154.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/logo%20rchat.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="textFieldEmail" layoutX="216.0" layoutY="117.0" prefHeight="31.0" prefWidth="183.0" />
+      <TextField fx:id="textFieldNombreUsuario" layoutX="216.0" layoutY="169.0" prefHeight="31.0" prefWidth="183.0" />
+      <PasswordField fx:id="passFieldPassword" layoutX="216.0" layoutY="221.0" prefHeight="31.0" prefWidth="183.0" />
+      <PasswordField fx:id="passFieldRepPassword" layoutX="216.0" layoutY="271.0" prefHeight="31.0" prefWidth="183.0" />
+      <Label layoutX="102.0" layoutY="125.0" text="Correo electronico :" textFill="WHITE">
+         <effect>
+            <DropShadow spread="0.5" />
+         </effect>
+      </Label>
+      <Label layoutX="93.0" layoutY="176.0" text="Nombre  de usuario :" textFill="WHITE">
+         <effect>
+            <DropShadow spread="0.5" />
+         </effect>
+      </Label>
+      <Label layoutX="147.0" layoutY="228.0" text="Password :" textFill="WHITE">
+         <effect>
+            <DropShadow spread="0.5" />
+         </effect>
+      </Label>
+      <Label layoutX="105.0" layoutY="278.0" text="Repetir Password :" textFill="WHITE">
+         <effect>
+            <DropShadow spread="0.5" />
+         </effect>
+      </Label>
+      <Button fx:id="btnTieneCuenta" layoutX="163.0" layoutY="325.0" mnemonicParsing="false" onAction="#TieneCuenta" prefHeight="31.0" prefWidth="106.0" text="Tengo cuenta" />
+      <Button fx:id="btnRegistrarse" layoutX="346.0" layoutY="325.0" mnemonicParsing="false" onAction="#registrarse" prefHeight="31.0" prefWidth="106.0" text="Registrarse" />
+      <Button fx:id="btnSalir" layoutX="562.0" layoutY="14.0" mnemonicParsing="false" onAction="#cerrarApp" text="X" />
+   </children>
+</AnchorPane>

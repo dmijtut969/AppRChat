@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -14,11 +15,12 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
-
+    
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(loadFXML("iniciarsesion"));
         stage.setScene(scene);
+        //stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
     }
 
@@ -33,6 +35,12 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+    public static void cambiarResAEscena() {
+    	((Stage)scene.getWindow()).sizeToScene();
+    }
+    public static void salirStage() {
+    	((Stage)scene.getWindow()).close();
     }
 
 }
