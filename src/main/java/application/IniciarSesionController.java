@@ -1,13 +1,21 @@
 package application;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.sql.SQLTimeoutException;
 
+import conectorManager.UsuarioManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import sesion.SesionActual;
+import utils.CustomAlerta;
+import utils.CustomException;
 
 public class IniciarSesionController {
 
@@ -36,7 +44,23 @@ public class IniciarSesionController {
 
     @FXML
     void iniciarSesion(ActionEvent event) {
-    	System.out.println(textFieldNombreUsuario.getText() + " " + passFieldPassword.getText());
+    	try {
+			if(UsuarioManager.findByNombre(textFieldNombreUsuario.getText()).getPassword().equals(passFieldPassword.getText())) {
+				SesionActual.setUsuarioActual(UsuarioManager.findByNombre(textFieldNombreUsuario.getText()));
+				System.out.println(SesionActual.getUsuarioActual().getEmail());
+			}else {
+				throw new CustomException("Contraseña incorrecta");
+			}
+		} catch (SQLTimeoutException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch (CustomException e) {
+			new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "Datos incorrectos",e.getMessage());
+			;
+		}
     }
 
     @FXML
