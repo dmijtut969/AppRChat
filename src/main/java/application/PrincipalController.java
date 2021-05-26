@@ -24,7 +24,6 @@ import javafx.scene.layout.VBox;
 import lombok.NoArgsConstructor;
 import sesion.SesionActual;
 
-
 @NoArgsConstructor
 public class PrincipalController implements Initializable {
 
@@ -85,7 +84,7 @@ public class PrincipalController implements Initializable {
 		App.cambiarResAEscena();
 	}
 
-	private void mostrarMisGrupos() {
+	void mostrarMisGrupos() {
 		try (Connection con = new Conector().getMySQLConnection()) {
 			PreparedStatement sacarGruposUsuario = con.prepareStatement(
 					"SELECT * FROM Grupos WHERE creador = ? " + "or usuario1 = ? or usuario2 = ? or usuario3 = ?");
@@ -108,8 +107,14 @@ public class PrincipalController implements Initializable {
 	}
 
 	@FXML
-	void crearGrupo(ActionEvent event) {
-
+	void crearGrupo(ActionEvent event) throws IOException {
+//		Stage creadorGrupo = new Stage();
+//		Scene insertGrupo = new Scene(loadFXML("creacionGrupo"));
+//		creadorGrupo.setScene(insertGrupo);
+//		creadorGrupo.initStyle(StageStyle.UNDECORATED);
+//		creadorGrupo.show();
+		App.setRoot("creacionGrupo");
+		App.cambiarResAEscena();
 	}
 
 	@FXML
