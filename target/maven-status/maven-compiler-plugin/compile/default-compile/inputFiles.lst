@@ -1,4 +1,14 @@
+E:\git\rchat\src\main\java\conector\Conector.java
+E:\git\rchat\src\main\java\sesion\SesionActual.java
 E:\git\rchat\src\main\java\application\IniciarSesionController.java
-E:\git\rchat\src\main\java\module-info.java
+E:\git\rchat\src\main\java\sesion\Usuario.java
 E:\git\rchat\src\main\java\application\App.java
-E:\git\rchat\src\main\java\application\SecondaryController.java
+E:\git\rchat\src\main\java\dao\Grupos.java
+E:\git\rchat\src\main\java\conectorManager\UsuarioManager.java
+E:\git\rchat\src\main\java\conector\Constructor.java
+E:\git\rchat\src\main\java\utils\CustomAlerta.java
+E:\git\rchat\src\main\java\module-info.java
+E:\git\rchat\src\main\java\conector\MySQLConstants.java
+E:\git\rchat\src\main\java\application\PrincipalController.java
+E:\git\rchat\src\main\java\application\RegistroController.java
+E:\git\rchat\src\main\java\utils\CustomException.java

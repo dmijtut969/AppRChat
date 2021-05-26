@@ -17,6 +17,7 @@ import sesion.SesionActual;
 import utils.CustomAlerta;
 import utils.CustomException;
 
+
 public class IniciarSesionController {
 
     @FXML
@@ -47,7 +48,8 @@ public class IniciarSesionController {
     	try {
 			if(UsuarioManager.findByNombre(textFieldNombreUsuario.getText()).getPassword().equals(passFieldPassword.getText())) {
 				SesionActual.setUsuarioActual(UsuarioManager.findByNombre(textFieldNombreUsuario.getText()));
-				System.out.println(SesionActual.getUsuarioActual().getEmail());
+				App.setRoot("principal");
+				App.cambiarResAEscena();
 			}else {
 				throw new CustomException("Contraseña incorrecta");
 			}
@@ -60,6 +62,8 @@ public class IniciarSesionController {
 		}catch (CustomException e) {
 			new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "Datos incorrectos",e.getMessage());
 			;
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
     }
 

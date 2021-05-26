@@ -5,6 +5,7 @@ module application {
 	requires java.sql;
 	requires transitive javafx.graphics;
 	requires javafx.base;
+	
     opens application to javafx.fxml;
     exports application;
 }

@@ -38,6 +38,7 @@ public class App extends Application {
     }
     public static void cambiarResAEscena() {
     	((Stage)scene.getWindow()).sizeToScene();
+    	((Stage)scene.getWindow()).centerOnScreen();
     }
     public static void salirStage() {
     	((Stage)scene.getWindow()).close();
