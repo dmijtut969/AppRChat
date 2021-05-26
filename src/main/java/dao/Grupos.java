@@ -11,6 +11,7 @@ import lombok.Setter;
 @Setter
 public class Grupos {
 	
+	private int idGrupo;
 	private String creador;
 	private String fecha;
 	private String nombre;
