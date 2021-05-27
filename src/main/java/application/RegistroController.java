@@ -65,6 +65,8 @@ public class RegistroController {
 			}else {
 				UsuarioManager.create(textFieldNombreUsuario.getText(), passFieldPassword.getText(),
 						textFieldEmail.getText());
+				App.setRoot("iniciarsesion");
+				App.cambiarResAEscena();
 			}
 		} catch (
 
@@ -76,6 +78,8 @@ public class RegistroController {
 			e.printStackTrace();
 		} catch (CustomException e) {
 			new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "No se ha podido registrar", e.getMessage());
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 

@@ -1,6 +1,6 @@
 //package rchat;
 //
-//import static org.junit.jupiter.api.Assumptions.assumeTrue;
+//import static org.junit.Assume.assumeTrue;
 //
 //import java.sql.Connection;
 //import java.sql.PreparedStatement;
@@ -10,11 +10,14 @@
 //import org.junit.jupiter.api.AfterEach;
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
-//
+//import org.junit.platform.runner.JUnitPlatform;
+//import org.junit.runner.RunWith;
 //
 //import conector.Conector;
 //
-//public class ConectarBaseDatos {
+////@ExtendWith(MockitoExtension.class)
+//@RunWith(JUnitPlatform.class)
+//public class ConectarBaseDatosTest {
 //	Connection con;
 //
 //	@BeforeEach

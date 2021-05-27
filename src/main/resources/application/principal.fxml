@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -36,7 +37,7 @@
                      <children>
                         <AnchorPane prefHeight="559.0" prefWidth="290.0" style="-fx-background-color: #8b0355; -fx-border-color: black;">
                            <children>
-                              <ListView fx:id="listViewGrupos" layoutX="13.0" layoutY="12.0" prefHeight="479.0" prefWidth="265.0" />
+                              <ListView fx:id="listViewGrupos" blendMode="SCREEN" fixedCellSize="-10.0" layoutX="13.0" layoutY="12.0" prefHeight="479.0" prefWidth="265.0" />
                            </children></AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #8b0355; -fx-border-color: black;">
                            <children>
@@ -49,12 +50,15 @@
                                  <font>
                                     <Font size="14.0" />
                                  </font>
+                                 <graphic>
+                                    <TextField fx:id="textFieldCatBuscada" prefHeight="27.0" prefWidth="106.0" promptText="inserte categoria" />
+                                 </graphic>
                               </Button>
                            </children>
                         </AnchorPane>
                      </children>
                   </VBox>
-                  <VBox fx:id="chat" prefHeight="644.0" prefWidth="1010.0" style="-fx-border-color: black;" />
+                  <VBox fx:id="chat" prefHeight="644.0" prefWidth="1010.0" />
                </children>
             </HBox>
          </children>
