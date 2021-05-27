@@ -62,16 +62,6 @@
 			<version>1.5.2</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.apiguardian</groupId>
-			<artifactId>apiguardian-api</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-		 <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-surefire-provider</artifactId>
-            <version>1.1.0</version>
-        </dependency>
 		<!-- Hamcrest dependency -->
 		<dependency>
 			<groupId>org.hamcrest</groupId>
