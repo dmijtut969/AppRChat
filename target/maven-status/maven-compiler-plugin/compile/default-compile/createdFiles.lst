@@ -3,6 +3,7 @@ conectorManager\UsuarioManager.class
 conector\MySQLConstants.class
 dao\Grupos.class
 utils\CustomException.class
+Main.class
 conector\Constructor.class
 sesion\Usuario.class
 application\CrearGrupoController.class
