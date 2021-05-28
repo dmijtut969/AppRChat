@@ -87,6 +87,12 @@
 			<version>3.9.1</version>
 			<type>maven-plugin</type>
 		</dependency>
+		<!-- Libreria para iconos JavaFX -->
+		<dependency>
+			<groupId>de.jensd</groupId>
+			<artifactId>fontawesomefx</artifactId>
+			<version>8.1</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
