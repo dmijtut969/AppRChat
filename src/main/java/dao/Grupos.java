@@ -19,7 +19,7 @@ public class Grupos {
 	private String usuario1;
 	private String usuario2;
 	private String usuario3;
-
+	private Integer idGrupo;
 	@Override
 	public String toString() {
 		int contadorPersonas = 1;

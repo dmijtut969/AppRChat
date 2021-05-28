@@ -1,26 +1,33 @@
 package application;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.sql.SQLTimeoutException;
 import java.util.ResourceBundle;
 
 import conector.Conector;
+import conectorManager.MensajeManager;
 import dao.Grupos;
+import dao.Mensaje;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -33,51 +40,74 @@ import utils.CustomException;
 public class PrincipalController implements Initializable {
 
 	@FXML
-	private AnchorPane anchor;
+    private AnchorPane anchor;
 
-	@FXML
-	private VBox separadorHeaderBody;
+    @FXML
+    private VBox separadorHeaderBody;
 
-	@FXML
-	private AnchorPane header;
+    @FXML
+    private AnchorPane header;
 
-	@FXML
-	private Button btnSalir;
+    @FXML
+    private Button btnSalir;
 
-	@FXML
-	private Button btnCerrarSesion;
+    @FXML
+    private Button btnCerrarSesion;
 
-	@FXML
-	private Label lblBienvenidaUsuario;
+    @FXML
+    private Label lblBienvenidaUsuario;
 
-	@FXML
-	private HBox body;
+    @FXML
+    private HBox body;
 
-	@FXML
-	private VBox grupos;
+    @FXML
+    private VBox grupos;
 
-	@FXML
-	private ListView<Grupos> listViewGrupos;
+    
 
+    @FXML
+    private Button btnCrearNuevoGrupo;
+
+    @FXML
+    private Button btnUnirseAGrupo;
+
+    @FXML
+    private TextField textFieldCatBuscada;
+
+    @FXML
+    private VBox chat;
+
+    @FXML
+    private Label lblNombreGrupo;
+
+    @FXML
+    private ListView<?> listViewExtMensajes;
+    
+    ObservableList<Mensaje> obsListExtMensajes = FXCollections.observableArrayList();
+
+    @FXML
+    private ListView<?> listViewMisMensajes;
+    
+    ObservableList<Mensaje> obsListMisMensajes = FXCollections.observableArrayList();
+
+    @FXML
+    private TextArea textAreaMensaje;
+
+    @FXML
+    private Button btnEnviarMensaje;
+	
+    @FXML
+    private ListView<Grupos> listViewGrupos;
+	
 	ObservableList<Grupos> obsListGrupos = FXCollections.observableArrayList();
-
-	@FXML
-	private Button btnCrearNuevoGrupo;
-
-	@FXML
-	private Button btnUnirseAGrupo;
-
-	@FXML
-	private TextField textFieldCatBuscada;
-
-	@FXML
-	private VBox chat;
-
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		lblBienvenidaUsuario.setText("¡Bienvenido @" + SesionActual.getUsuarioActual().getNombreUsuario() + "!");
 		listViewGrupos.setStyle("-fx-font-size: 1.5em;");
+		chat.setVisible(false);
 		mostrarMisGrupos();
+		
 
 	}
 
@@ -107,7 +137,7 @@ public class PrincipalController implements Initializable {
 			while (result.next()) {
 				obsListGrupos.add(
 						new Grupos(result.getString(1), result.getString(2), result.getString(3), result.getString(4),
-								result.getString(5), result.getString(6), result.getString(7), result.getString(8)));
+								result.getString(5), result.getString(6), result.getString(7), result.getString(8),result.getInt(9)));
 			}
 			listViewGrupos.setItems(obsListGrupos);
 		} catch (SQLException e1) {
@@ -124,29 +154,29 @@ public class PrincipalController implements Initializable {
 	@FXML
 	void unirseAGrupo(ActionEvent event) {
 
-		try (Connection con = new Conector().getMySQLConnection()){	
+		try (Connection con = new Conector().getMySQLConnection()) {
 			Grupos grupoRandom = sacarGrupoRandom();
-			if (grupoRandom!=null) { 
-			String usuarioNulo = "";
-			if (grupoRandom.getUsuario1() == null) {
-				usuarioNulo="usuario1";
-			}else if (grupoRandom.getUsuario2() == null) {
-				usuarioNulo="usuario2";
-			}else {
-				usuarioNulo="usuario3";
-			}
-			PreparedStatement unirse = con.prepareStatement("UPDATE Grupos SET "+ usuarioNulo +" = ? "
-					+ "where creador = ? and fecha = ?");
-			unirse.setString(1, SesionActual.getUsuarioActual().getNombreUsuario());
-			unirse.setString(2, grupoRandom.getCreador());
-			unirse.setString(3, grupoRandom.getFecha());
-			unirse.executeUpdate();
-			System.out.println("Ejecutada update");
-			mostrarMisGrupos();
+			if (grupoRandom != null) {
+				String usuarioNulo = "";
+				if (grupoRandom.getUsuario1() == null) {
+					usuarioNulo = "usuario1";
+				} else if (grupoRandom.getUsuario2() == null) {
+					usuarioNulo = "usuario2";
+				} else {
+					usuarioNulo = "usuario3";
+				}
+				PreparedStatement unirse = con.prepareStatement(
+						"UPDATE Grupos SET " + usuarioNulo + " = ? " + "where creador = ? and fecha = ?");
+				unirse.setString(1, SesionActual.getUsuarioActual().getNombreUsuario());
+				unirse.setString(2, grupoRandom.getCreador());
+				unirse.setString(3, grupoRandom.getFecha());
+				unirse.executeUpdate();
+				System.out.println("Ejecutada update");
+				mostrarMisGrupos();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} 
+		}
 	}
 
 	private Grupos sacarGrupoRandom() {
@@ -164,7 +194,7 @@ public class PrincipalController implements Initializable {
 				throw new CustomException("No hay grupos con huecos o con esa categoria, ¡crea uno!");
 
 			return new Grupos(result.getString(1), result.getString(2), result.getString(3), result.getString(4),
-					result.getString(5), result.getString(6), result.getString(7), result.getString(8));
+					result.getString(5), result.getString(6), result.getString(7), result.getString(8),result.getInt(9));
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		} catch (CustomException e) {
@@ -173,4 +203,26 @@ public class PrincipalController implements Initializable {
 		return null;
 	}
 
+	@FXML
+	void mostrarMensajesSelec(MouseEvent event) {
+		chat.setVisible(true);
+		lblNombreGrupo.setText(listViewGrupos.getSelectionModel().getSelectedItem().getNombre());
+	}
+	
+	@FXML
+	void enviarMensaje(ActionEvent event) {
+		try {
+			MensajeManager.create(new Mensaje(listViewGrupos.getSelectionModel().getSelectedItem().getIdGrupo()
+					,SesionActual.getUsuarioActual().getNombreUsuario(),textAreaMensaje.getText()));
+			textAreaMensaje.clear();
+		} catch (SQLIntegrityConstraintViolationException e) {
+			e.printStackTrace();
+		} catch (SQLTimeoutException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (CustomException e) {
+			e.printStackTrace();
+		}
+	}
 }
