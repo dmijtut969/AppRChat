@@ -81,12 +81,12 @@ public class PrincipalController implements Initializable {
     private Label lblNombreGrupo;
 
     @FXML
-    private ListView<?> listViewExtMensajes;
+    private ListView<Mensaje> listViewExtMensajes;
     
     ObservableList<Mensaje> obsListExtMensajes = FXCollections.observableArrayList();
 
     @FXML
-    private ListView<?> listViewMisMensajes;
+    private ListView<Mensaje> listViewMisMensajes;
     
     ObservableList<Mensaje> obsListMisMensajes = FXCollections.observableArrayList();
 
@@ -105,6 +105,8 @@ public class PrincipalController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		lblBienvenidaUsuario.setText("¡Bienvenido @" + SesionActual.getUsuarioActual().getNombreUsuario() + "!");
 		listViewGrupos.setStyle("-fx-font-size: 1.5em;");
+		listViewMisMensajes.setStyle("-fx-font-size: 1.5em;");
+		listViewExtMensajes.setStyle("-fx-font-size: 1.5em;");
 		chat.setVisible(false);
 		mostrarMisGrupos();
 		
@@ -206,7 +208,22 @@ public class PrincipalController implements Initializable {
 	@FXML
 	void mostrarMensajesSelec(MouseEvent event) {
 		chat.setVisible(true);
-		lblNombreGrupo.setText(listViewGrupos.getSelectionModel().getSelectedItem().getNombre());
+		Grupos grupoSeleccionado = listViewGrupos.getSelectionModel().getSelectedItem();
+		lblNombreGrupo.setText(grupoSeleccionado.getNombre());
+		try {
+			obsListExtMensajes.clear();
+			obsListExtMensajes.addAll(MensajeManager.sacarUltimosMensajesGrupoConLimite(grupoSeleccionado.getIdGrupo(),10));
+			listViewExtMensajes.setItems(obsListExtMensajes);
+			obsListMisMensajes.clear();
+			obsListMisMensajes.addAll(MensajeManager.sacarUltimosMensajesGrupoConLimite(grupoSeleccionado.getIdGrupo(),10));
+			listViewMisMensajes.setItems(obsListMisMensajes);
+		} catch (SQLTimeoutException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@FXML

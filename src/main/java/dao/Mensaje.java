@@ -2,13 +2,17 @@ package dao;
 
 import java.time.LocalTime;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class Mensaje {
 	
+	
+
 	private int idGrupo;
 	private String emisor;
 	private String mensaje;
@@ -27,7 +31,10 @@ public class Mensaje {
 		this.hora = LocalTime.now().toString().substring(0,10);
 	}
 	
-	
+	@Override
+	public String toString() {
+		return mensaje;
+	}
 	
 	
 }
