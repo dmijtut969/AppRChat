@@ -7,8 +7,10 @@ E:\git\rchat\src\main\java\application\App.java
 E:\git\rchat\src\main\java\dao\Grupos.java
 E:\git\rchat\src\main\java\conectorManager\UsuarioManager.java
 E:\git\rchat\src\main\java\conector\Constructor.java
+E:\git\rchat\src\main\java\dao\Mensaje.java
 E:\git\rchat\src\main\java\utils\CustomAlerta.java
 E:\git\rchat\src\main\java\conector\MySQLConstants.java
+E:\git\rchat\src\main\java\conectorManager\MensajeManager.java
 E:\git\rchat\src\main\java\application\CrearGrupoController.java
 E:\git\rchat\src\main\java\application\PrincipalController.java
 E:\git\rchat\src\main\java\application\RegistroController.java

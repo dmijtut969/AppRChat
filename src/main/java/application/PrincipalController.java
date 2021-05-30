@@ -15,11 +15,14 @@ import conector.Conector;
 import conectorManager.MensajeManager;
 import dao.Grupos;
 import dao.Mensaje;
+import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -31,6 +34,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import lombok.NoArgsConstructor;
 import sesion.SesionActual;
 import utils.CustomAlerta;
@@ -104,9 +108,12 @@ public class PrincipalController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		lblBienvenidaUsuario.setText("¡Bienvenido @" + SesionActual.getUsuarioActual().getNombreUsuario() + "!");
+		efectoFadeNombreGrupo();
 		listViewGrupos.setStyle("-fx-font-size: 1.5em;");
-		listViewMisMensajes.setStyle("-fx-font-size: 1.5em;");
-		listViewExtMensajes.setStyle("-fx-font-size: 1.5em;");
+		listViewMisMensajes.setStyle("-fx-font-size: 1.3em;");
+		listViewExtMensajes.setStyle("-fx-font-size: 1.3em;");
+		listViewMisMensajes.setPadding(new Insets(0));
+		listViewExtMensajes	.setPadding(new Insets(0));
 		chat.setVisible(false);
 		mostrarMisGrupos();
 		
@@ -211,12 +218,7 @@ public class PrincipalController implements Initializable {
 		Grupos grupoSeleccionado = listViewGrupos.getSelectionModel().getSelectedItem();
 		lblNombreGrupo.setText(grupoSeleccionado.getNombre());
 		try {
-			obsListExtMensajes.clear();
-			obsListExtMensajes.addAll(MensajeManager.sacarUltimosMensajesGrupoConLimite(grupoSeleccionado.getIdGrupo(),10));
-			listViewExtMensajes.setItems(obsListExtMensajes);
-			obsListMisMensajes.clear();
-			obsListMisMensajes.addAll(MensajeManager.sacarUltimosMensajesGrupoConLimite(grupoSeleccionado.getIdGrupo(),10));
-			listViewMisMensajes.setItems(obsListMisMensajes);
+			cambiarMensajesMostrados(grupoSeleccionado);
 		} catch (SQLTimeoutException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -225,13 +227,31 @@ public class PrincipalController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+
+	private void cambiarMensajesMostrados(Grupos grupoSeleccionado) throws SQLTimeoutException, SQLException {
+		obsListExtMensajes.clear();
+		obsListMisMensajes.clear();
+		for(Mensaje mensaje : MensajeManager.sacarUltimosMensajesGrupoConLimite(grupoSeleccionado.getIdGrupo(),10)) {
+			if (mensaje.getEmisor().equals(SesionActual.getUsuarioActual().getNombreUsuario())) {
+				obsListMisMensajes.add(mensaje);
+				obsListExtMensajes.add(new Mensaje());
+			}else {
+				obsListExtMensajes.add(mensaje);
+				obsListMisMensajes.add(new Mensaje());
+			}
+		}
+		listViewExtMensajes.setItems(obsListExtMensajes);
+		listViewMisMensajes.setItems(obsListMisMensajes);
+	}
 	
 	@FXML
 	void enviarMensaje(ActionEvent event) {
 		try {
-			MensajeManager.create(new Mensaje(listViewGrupos.getSelectionModel().getSelectedItem().getIdGrupo()
+			Grupos grupoSeleccionado = listViewGrupos.getSelectionModel().getSelectedItem();
+			MensajeManager.create(new Mensaje(grupoSeleccionado.getIdGrupo()
 					,SesionActual.getUsuarioActual().getNombreUsuario(),textAreaMensaje.getText()));
 			textAreaMensaje.clear();
+			cambiarMensajesMostrados(grupoSeleccionado);
 		} catch (SQLIntegrityConstraintViolationException e) {
 			e.printStackTrace();
 		} catch (SQLTimeoutException e) {
@@ -241,5 +261,16 @@ public class PrincipalController implements Initializable {
 		} catch (CustomException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void efectoFadeNombreGrupo() {
+		FadeTransition fade = new FadeTransition();
+		fade.setDuration(Duration.millis(2000));
+		fade.setFromValue(10);
+		fade.setToValue(0);
+		fade.setCycleCount(Animation.INDEFINITE);
+		fade.setAutoReverse(true);
+		fade.setNode(lblNombreGrupo);
+		fade.play();
 	}
 }

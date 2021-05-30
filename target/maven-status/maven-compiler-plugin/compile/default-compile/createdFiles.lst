@@ -1,3 +1,4 @@
+dao\Mensaje.class
 utils\CustomAlerta.class
 conectorManager\UsuarioManager.class
 conector\MySQLConstants.class
@@ -11,5 +12,6 @@ conector\Conector.class
 application\PrincipalController.class
 application\RegistroController.class
 application\IniciarSesionController.class
+conectorManager\MensajeManager.class
 sesion\SesionActual.class
 application\App.class

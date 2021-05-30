@@ -28,13 +28,16 @@ public class Mensaje {
 	
 	public Mensaje() {
 		super();
+		this.emisor = "";
+		this.mensaje = "";
 		this.hora = LocalTime.now().toString().substring(0,10);
 	}
 	
 	@Override
-	public String toString() {
-		return mensaje;
+	public String toString() {					
+		return emisor + "     " + mensaje; 
 	}
+	
 	
 	
 }
