@@ -7,14 +7,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Usuario implements Comparable<Usuario>{
+public class Mensaje implements Comparable<Mensaje>{
 	
 	private Integer id;
 	private String nombreUsuario;
 	private String password;
 	private String email;
 	
-	public Usuario(int id,String nombreUsuario,String password,String email) {
+	public Mensaje(int id,String nombreUsuario,String password,String email) {
 		this.id = id;
 		this.nombreUsuario = nombreUsuario;
 		this.password = password;
@@ -22,7 +22,7 @@ public class Usuario implements Comparable<Usuario>{
 	}
 
 	@Override
-	public int compareTo(Usuario usuario) {
+	public int compareTo(Mensaje usuario) {
 		
 		return this.getId().compareTo(usuario.getId());
 	}
