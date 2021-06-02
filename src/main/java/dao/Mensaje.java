@@ -30,12 +30,12 @@ public class Mensaje {
 		super();
 		this.emisor = "";
 		this.mensaje = "";
-		this.hora = LocalTime.now().toString().substring(0,10);
+		this.hora = "";
 	}
 	
 	@Override
 	public String toString() {					
-		return emisor + "     " + mensaje; 
+		return emisor + "     " + mensaje + "     " + this.hora; 
 	}
 	
 	
