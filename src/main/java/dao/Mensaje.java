@@ -12,7 +12,7 @@ import lombok.Setter;
 public class Mensaje {
 	
 	
-
+	private int idMensaje;
 	private int idGrupo;
 	private String emisor;
 	private String mensaje;
@@ -25,6 +25,15 @@ public class Mensaje {
 		this.mensaje = mensaje;
 		this.hora = LocalTime.now().toString().substring(0,8);
 	}
+	
+//	public Mensaje(int idMensaje,int idGrupo, String emisor, String mensaje) {
+//		super();
+//		this.idMensaje = idMensaje;
+//		this.idGrupo = idGrupo;
+//		this.emisor = emisor;
+//		this.mensaje = mensaje;
+//		this.hora = LocalTime.now().toString().substring(0,8);
+//	}
 	
 	public Mensaje() {
 		super();

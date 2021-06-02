@@ -23,7 +23,7 @@ public class MensajeManager {
 			ResultSet result = query.getResultSet();
 			ArrayList<Mensaje> mensajesDelGrupo = new ArrayList<>();
 			while (result.next()) {
-				mensajesDelGrupo.add(new Mensaje(result.getInt("idGrupo"), result.getString("emisor"),
+				mensajesDelGrupo.add(new Mensaje(result.getInt("idMensaje"),result.getInt("idGrupo"), result.getString("emisor"),
 						result.getString("mensaje"), result.getString("fecha")));
 			}
 			return mensajesDelGrupo;
@@ -41,14 +41,14 @@ public class MensajeManager {
 			ResultSet result = query.getResultSet();
 			ArrayList<Mensaje> mensajesDelGrupoLimitados = new ArrayList<>();
 			while (result.next()) {
-				mensajesDelGrupoLimitados.add(new Mensaje(result.getInt("idGrupo"), result.getString("emisor"),
+				mensajesDelGrupoLimitados.add(new Mensaje(result.getInt("idMensaje"),result.getInt("idGrupo"), result.getString("emisor"),
 						result.getString("mensaje"), result.getString("fecha")));
 			}
 			return mensajesDelGrupoLimitados;
 		}
 	}
 
-	public static boolean create(Mensaje mensaje)
+	public static boolean crearMensaje(Mensaje mensaje)
 			throws SQLIntegrityConstraintViolationException, SQLTimeoutException, SQLException, CustomException {
 		try (Connection con = new Conector().getMySQLConnection()) {
 			PreparedStatement query = con
@@ -57,6 +57,19 @@ public class MensajeManager {
 			query.setString(2, mensaje.getEmisor());
 			query.setString(3, mensaje.getMensaje());
 			query.setString(4, mensaje.getHora());
+			if (query.executeUpdate() > 0)
+				return true;
+			else
+				return false;
+		}
+	}
+	
+	public static boolean eliminarMensaje(Mensaje mensaje)
+			throws SQLIntegrityConstraintViolationException, SQLTimeoutException, SQLException, CustomException {
+		try (Connection con = new Conector().getMySQLConnection()) {
+			PreparedStatement query = con
+					.prepareStatement("DELETE FROM Mensaje WHERE idMensaje = ?");
+			query.setInt(1, mensaje.getIdMensaje());
 			if (query.executeUpdate() > 0)
 				return true;
 			else
