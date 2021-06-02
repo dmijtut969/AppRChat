@@ -17,12 +17,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 
 import conectorManager.UsuarioManager;
-import sesion.Usuario;
+import sesion.Mensaje;
 import utils.CustomException;
 
 @ExtendWith(MockitoExtension.class)
 public class UsuarioManagerTest {
-	Usuario usuario;
+	Mensaje usuario;
 
 	@Mock
 	Connection con;
@@ -31,7 +31,7 @@ public class UsuarioManagerTest {
 	PreparedStatement prepStat;
 
 	@InjectMocks
-	Usuario usuarioMock = new Usuario();
+	Mensaje usuarioMock = new Mensaje();
 
 	@BeforeEach
 	void antesDeTest() {
