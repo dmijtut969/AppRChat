@@ -1,3 +1,6 @@
+/*
+ * @author Daniel Mijens Tutor
+ */
 package conectorManager;
 
 import java.sql.Connection;
@@ -13,8 +16,19 @@ import conector.Conector;
 import dao.Mensaje;
 import utils.CustomException;
 
+/**
+ * The Class MensajeManager.
+ */
 public class MensajeManager {
 
+	/**
+	 * Find mensaje by grupo.
+	 *
+	 * @param idGrupo the id grupo
+	 * @return the list
+	 * @throws SQLTimeoutException the SQL timeout exception
+	 * @throws SQLException the SQL exception
+	 */
 	public static List<Mensaje> findMensajeByGrupo(int idGrupo) throws SQLTimeoutException, SQLException {
 		try (Connection con = new Conector().getMySQLConnection()) {
 			PreparedStatement query = con.prepareStatement("select * from Mensaje where idGrupo = ?");
@@ -30,6 +44,15 @@ public class MensajeManager {
 		}
 	}
 
+	/**
+	 * Sacar ultimos mensajes grupo con limite.
+	 *
+	 * @param idGrupo the id grupo
+	 * @param limiteMensajes the limite mensajes
+	 * @return the list
+	 * @throws SQLTimeoutException the SQL timeout exception
+	 * @throws SQLException the SQL exception
+	 */
 	public static List<Mensaje> sacarUltimosMensajesGrupoConLimite(Integer idGrupo, int limiteMensajes)
 			throws SQLTimeoutException, SQLException {
 		try (Connection con = new Conector().getMySQLConnection()) {
@@ -48,6 +71,16 @@ public class MensajeManager {
 		}
 	}
 
+	/**
+	 * Crear mensaje.
+	 *
+	 * @param mensaje the mensaje
+	 * @return true, if successful
+	 * @throws SQLIntegrityConstraintViolationException the SQL integrity constraint violation exception
+	 * @throws SQLTimeoutException the SQL timeout exception
+	 * @throws SQLException the SQL exception
+	 * @throws CustomException the custom exception
+	 */
 	public static boolean crearMensaje(Mensaje mensaje)
 			throws SQLIntegrityConstraintViolationException, SQLTimeoutException, SQLException, CustomException {
 		try (Connection con = new Conector().getMySQLConnection()) {
@@ -64,6 +97,16 @@ public class MensajeManager {
 		}
 	}
 	
+	/**
+	 * Eliminar mensaje.
+	 *
+	 * @param mensaje the mensaje
+	 * @return true, if successful
+	 * @throws SQLIntegrityConstraintViolationException the SQL integrity constraint violation exception
+	 * @throws SQLTimeoutException the SQL timeout exception
+	 * @throws SQLException the SQL exception
+	 * @throws CustomException the custom exception
+	 */
 	public static boolean eliminarMensaje(Mensaje mensaje)
 			throws SQLIntegrityConstraintViolationException, SQLTimeoutException, SQLException, CustomException {
 		try (Connection con = new Conector().getMySQLConnection()) {

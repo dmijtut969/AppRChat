@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package rchat;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,24 +23,39 @@ import conectorManager.UsuarioManager;
 import sesion.Mensaje;
 import utils.CustomException;
 
+/**
+ * Class UsuarioManagerTest.
+ * @author Daniel Mijens Tutor
+ */
 @ExtendWith(MockitoExtension.class)
 public class UsuarioManagerTest {
+	
+	/** The usuario. */
 	Mensaje usuario;
 
+	/** The con. */
 	@Mock
 	Connection con;
 
+	/** The prep stat. */
 	@Mock
 	PreparedStatement prepStat;
 
+	/** The usuario mock. */
 	@InjectMocks
 	Mensaje usuarioMock = new Mensaje();
 
+	/**
+	 * Antes del test.
+	 */
 	@BeforeEach
 	void antesDeTest() {
 		System.out.println("--------------INICIO TEST--------------");
 	}
 
+	/**
+	 * Buscar usuario por ID OK.
+	 */
 	@Test
 	void buscarUsuarioPorID_OK(){
 		try {
@@ -50,6 +68,9 @@ public class UsuarioManagerTest {
 		assertEquals(2, usuario.getId());
 	}
 	
+	/**
+	 * Buscar usuario por ID NOT OK.
+	 */
 	@Test
 	void buscarUsuarioPorID_NOT_OK(){
 		try {
@@ -62,8 +83,11 @@ public class UsuarioManagerTest {
 		assertNotEquals(1, usuario.getId());
 	}
 	
+	/**
+	 * Buscar usuario por email OK.
+	 */
 	@Test
-	void buscarUsuarioPoreEmail_OK() {
+	void buscarUsuarioPorEmail_OK() {
 		try {
 			usuario = UsuarioManager.findByEmail("danimijtut@gmail.com");
 		} catch (SQLTimeoutException e) {
@@ -76,6 +100,9 @@ public class UsuarioManagerTest {
 		assertEquals("danimijtut@gmail.com", usuario.getEmail());
 	}
 	
+	/**
+	 * Buscar usuario por email NOT OK.
+	 */
 	@Test
 	void buscarUsuarioPorEmail_NOT_OK(){
 		try {
@@ -90,6 +117,9 @@ public class UsuarioManagerTest {
 		assertNotEquals("noexiste@gmail.com", usuario.getEmail());
 	}
 	
+	/**
+	 * Buscar usuario por nombre OK.
+	 */
 	@Test
 	void buscarUsuarioPorNombre_OK(){
 		try {
@@ -104,6 +134,9 @@ public class UsuarioManagerTest {
 		assertEquals("Dani", usuario.getNombreUsuario());
 	}
 	
+	/**
+	 * Buscar usuario por nombre NOT OK.
+	 */
 	@Test
 	void buscarUsuarioPorNombre_NOT_OK(){
 		try {
@@ -143,7 +176,10 @@ public class UsuarioManagerTest {
 //		}
 //	}
 
-	@BeforeEach
+	/**
+ * Despues del test.
+ */
+@BeforeEach
 	void despuesDeTest() {
 		System.out.println("--------------FIN DEL TEST--------------");
 	}

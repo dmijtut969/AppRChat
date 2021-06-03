@@ -1,3 +1,6 @@
+/*
+ * @author Daniel Mijens Tutor
+ */
 package application;
 
 import java.io.IOException;
@@ -19,40 +22,66 @@ import sesion.SesionActual;
 import utils.CustomAlerta;
 import utils.CustomException;
 
+/**
+ * The Class CrearGrupoController.
+ */
 public class CrearGrupoController {
 
+	/** The anchor. */
 	@FXML
 	private AnchorPane anchor;
 
+	/** The text field nombre grupo. */
 	@FXML
 	private TextField textFieldNombreGrupo;
 
+	/** The text field categoria. */
 	@FXML
 	private TextField textFieldCategoria;
 
+	/** The btn crear grupo. */
 	@FXML
 	private Button btnCrearGrupo;
 	
+    /** The btn atras. */
     @FXML
     private Button btnAtras;
 
+	/** The btn salir. */
 	@FXML
 	private Button btnSalir;
 
+	/** The text area desc. */
 	@FXML
 	private TextArea textAreaDesc;
 
+	/**
+	 * Cerrar app.
+	 *
+	 * @param event the event
+	 */
 	@FXML
 	void cerrarApp(ActionEvent event) {
 		App.salirStage();
 	}
 	
+	/**
+	 * Ir atras.
+	 *
+	 * @param event the event
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	@FXML
 	void irAtras(ActionEvent event) throws IOException {
 		App.setRoot("principal");
 		App.cambiarResAEscena();
 	}
 
+	/**
+	 * Crear grupo.
+	 *
+	 * @param event the event
+	 */
 	@FXML
 	void crearGrupo(ActionEvent event) {
 		try (Connection con = new Conector().getMySQLConnection()) {

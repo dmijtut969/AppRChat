@@ -1,3 +1,6 @@
+/*
+ * @author Daniel Mijens Tutor
+ */
 package conectorManager;
 
 import java.sql.Connection;
@@ -11,8 +14,19 @@ import conector.Conector;
 import sesion.Mensaje;
 import utils.CustomException;
 
+/**
+ * The Class UsuarioManager.
+ */
 public class UsuarioManager {
 
+	/**
+	 * Find by id.
+	 *
+	 * @param idUsuario the id usuario
+	 * @return the mensaje
+	 * @throws SQLTimeoutException the SQL timeout exception
+	 * @throws SQLException the SQL exception
+	 */
 	public static Mensaje findById(int idUsuario) throws SQLTimeoutException, SQLException {
 		try (Connection con = new Conector().getMySQLConnection()) {
 			PreparedStatement query = con.prepareStatement("SELECT * FROM Usuario WHERE idUsuario = ?");
@@ -27,6 +41,15 @@ public class UsuarioManager {
 		}
 	}
 
+	/**
+	 * Find by nombre.
+	 *
+	 * @param nombreUsu the nombre usu
+	 * @return the mensaje
+	 * @throws SQLTimeoutException the SQL timeout exception
+	 * @throws SQLException the SQL exception
+	 * @throws CustomException the custom exception
+	 */
 	public static Mensaje findByNombre(String nombreUsu) throws SQLTimeoutException, SQLException, CustomException {
 		try (Connection con = new Conector().getMySQLConnection()) {
 			PreparedStatement query = con.prepareStatement("SELECT * FROM Usuario WHERE nombre_usuario = ?");
@@ -40,6 +63,16 @@ public class UsuarioManager {
 					result.getString("password"), result.getString("email"));
 		}
 	}
+	
+	/**
+	 * Find by nombre boolean.
+	 *
+	 * @param nombreUsu the nombre usu
+	 * @return true, if successful
+	 * @throws SQLTimeoutException the SQL timeout exception
+	 * @throws SQLException the SQL exception
+	 * @throws CustomException the custom exception
+	 */
 	public static boolean findByNombreBoolean(String nombreUsu) throws SQLTimeoutException, SQLException, CustomException {
 		try (Connection con = new Conector().getMySQLConnection()) {
 			PreparedStatement query = con.prepareStatement("SELECT * FROM Usuario WHERE nombre_usuario = ?");
@@ -50,6 +83,15 @@ public class UsuarioManager {
 		}
 	}
 
+	/**
+	 * Find by email.
+	 *
+	 * @param email the email
+	 * @return the mensaje
+	 * @throws SQLTimeoutException the SQL timeout exception
+	 * @throws SQLException the SQL exception
+	 * @throws CustomException the custom exception
+	 */
 	public static Mensaje findByEmail(String email) throws SQLTimeoutException, SQLException, CustomException {
 		try (Connection con = new Conector().getMySQLConnection()) {
 			PreparedStatement query = con.prepareStatement("SELECT * FROM Usuario WHERE email = ?");
@@ -64,6 +106,15 @@ public class UsuarioManager {
 		}
 	}
 
+	/**
+	 * Find by email boolean.
+	 *
+	 * @param email the email
+	 * @return true, if successful
+	 * @throws SQLTimeoutException the SQL timeout exception
+	 * @throws SQLException the SQL exception
+	 * @throws CustomException the custom exception
+	 */
 	public static boolean findByEmailBoolean(String email) throws SQLTimeoutException, SQLException, CustomException {
 		try (Connection con = new Conector().getMySQLConnection()) {
 			PreparedStatement query = con.prepareStatement("SELECT * FROM Usuario WHERE email = ?");
@@ -74,6 +125,18 @@ public class UsuarioManager {
 		}
 	}
 
+	/**
+	 * Creates the.
+	 *
+	 * @param nombreUsu the nombre usu
+	 * @param pass the pass
+	 * @param email the email
+	 * @return true, if successful
+	 * @throws SQLIntegrityConstraintViolationException the SQL integrity constraint violation exception
+	 * @throws SQLTimeoutException the SQL timeout exception
+	 * @throws SQLException the SQL exception
+	 * @throws CustomException the custom exception
+	 */
 	public static boolean create(String nombreUsu, String pass, String email)
 			throws SQLIntegrityConstraintViolationException, SQLTimeoutException, SQLException, CustomException {
 		try (Connection con = new Conector().getMySQLConnection()) {

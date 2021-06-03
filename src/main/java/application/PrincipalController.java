@@ -1,3 +1,6 @@
+/*
+ * @author Daniel Mijens Tutor
+ */
 package application;
 
 import java.io.IOException;
@@ -27,12 +30,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import lombok.NoArgsConstructor;
@@ -40,72 +46,127 @@ import sesion.SesionActual;
 import utils.CustomAlerta;
 import utils.CustomException;
 
+
+/**
+ * Instantiates a new principal controller.
+ */
 @NoArgsConstructor
 public class PrincipalController implements Initializable {
 
+	/** The anchor. */
 	@FXML
 	private AnchorPane anchor;
 
+	/** The separador header body. */
 	@FXML
 	private VBox separadorHeaderBody;
 
+	/** The header. */
 	@FXML
 	private AnchorPane header;
 
+	/** The btn salir. */
 	@FXML
 	private Button btnSalir;
 
+	/** The btn cerrar sesion. */
 	@FXML
 	private Button btnCerrarSesion;
 
+	/** The lbl bienvenida usuario. */
 	@FXML
 	private Label lblBienvenidaUsuario;
 
+	/** The body. */
 	@FXML
 	private HBox body;
 
+	/** The grupos. */
 	@FXML
 	private VBox grupos;
 
+	/** The btn crear nuevo grupo. */
 	@FXML
 	private Button btnCrearNuevoGrupo;
 
+	/** The btn unirse A grupo. */
 	@FXML
 	private Button btnUnirseAGrupo;
 
+	/** The text field cat buscada. */
 	@FXML
 	private TextField textFieldCatBuscada;
 
+	/** The chat. */
 	@FXML
 	private VBox chat;
 
+	/** The lbl nombre grupo. */
 	@FXML
 	private Label lblNombreGrupo;
 
+	/** The list view ext mensajes. */
 	@FXML
 	private ListView<Mensaje> listViewExtMensajes;
 
+	/** The obs list ext mensajes. */
 	ObservableList<Mensaje> obsListExtMensajes = FXCollections.observableArrayList();
 
+	/** The list view mis mensajes. */
 	@FXML
 	private ListView<Mensaje> listViewMisMensajes;
 
+	/** The obs list mis mensajes. */
 	ObservableList<Mensaje> obsListMisMensajes = FXCollections.observableArrayList();
 
+	/** The text area mensaje. */
 	@FXML
 	private TextArea textAreaMensaje;
 
+	/** The btn enviar mensaje. */
 	@FXML
 	private Button btnEnviarMensaje;
 
+	/** The btn salir del grupo. */
 	@FXML
 	private Button btnSalirDelGrupo;
 
+	/** The list view grupos. */
 	@FXML
 	private ListView<Grupos> listViewGrupos;
 
+	/** The obs list grupos. */
 	ObservableList<Grupos> obsListGrupos = FXCollections.observableArrayList();
 
+	/**
+	 * Initialize.
+	 *
+	 * @param location the location
+	 * @param resources the resources
+	 */
+
+	static class Cell extends ListCell<String> {
+			HBox hbox = new HBox();
+			Button btn = new Button("Prueba");
+			Label label = new Label("");
+			Pane pane = new Pane();
+			
+			public Cell() {
+				super();
+				hbox.getChildren().addAll(label,pane,btn);
+				HBox.setHgrow(pane, Priority.ALWAYS);
+			}
+			
+			public void updateItem(String name, boolean empty) {
+				super.updateItem(name, empty);
+				setText(null);
+				setGraphic(null);
+				if (name!=null && !empty) {
+					label.setText(name);
+					setGraphic(hbox);
+				}
+			}
+		}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		lblBienvenidaUsuario.setText("¡Bienvenido @" + SesionActual.getUsuarioActual().getNombreUsuario() + "!");
@@ -117,14 +178,26 @@ public class PrincipalController implements Initializable {
 		listViewExtMensajes.setPadding(new Insets(0));
 		chat.setVisible(false);
 		mostrarMisGrupos();
+		
+		listViewGrupos.setCellFactory(cell-> new Cell());
 
 	}
-
+	/**
+	 * Cerrar app.
+	 *
+	 * @param event the event
+	 */
 	@FXML
 	void cerrarApp(ActionEvent event) {
 		App.salirStage();
 	}
 
+	/**
+	 * Cerrar sesion.
+	 *
+	 * @param event the event
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	@FXML
 	void cerrarSesion(ActionEvent event) throws IOException {
 		SesionActual.setUsuarioActual(null);
@@ -132,6 +205,9 @@ public class PrincipalController implements Initializable {
 		App.cambiarResAEscena();
 	}
 
+	/**
+	 * Mostrar mis grupos.
+	 */
 	void mostrarMisGrupos() {
 		try (Connection con = new Conector().getMySQLConnection()) {
 			PreparedStatement sacarGruposUsuario = con.prepareStatement(
@@ -154,12 +230,23 @@ public class PrincipalController implements Initializable {
 		}
 	}
 
+	/**
+	 * Crear grupo.
+	 *
+	 * @param event the event
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	@FXML
 	void crearGrupo(ActionEvent event) throws IOException {
 		App.setRoot("creacionGrupo");
 		App.cambiarResAEscena();
 	}
 
+	/**
+	 * Unirse A grupo.
+	 *
+	 * @param event the event
+	 */
 	@FXML
 	void unirseAGrupo(ActionEvent event) {
 
@@ -188,6 +275,12 @@ public class PrincipalController implements Initializable {
 		}
 	}
 
+	/**
+	 * Salir de grupo.
+	 *
+	 * @param event the event
+	 * @throws SQLException the SQL exception
+	 */
 	@FXML
 	void salirDeGrupo(ActionEvent event) throws SQLException {
 		Grupos grupoSeleccionado = listViewGrupos.getSelectionModel().getSelectedItem();
@@ -216,6 +309,13 @@ public class PrincipalController implements Initializable {
 		}
 	}
 
+	/**
+	 * Borrar grupo.
+	 *
+	 * @param event the event
+	 * @return true, if successful
+	 * @throws SQLException the SQL exception
+	 */
 	@FXML
 	boolean borrarGrupo(ActionEvent event) throws SQLException {
 		Grupos grupoSeleccionado = listViewGrupos.getSelectionModel().getSelectedItem();
@@ -231,6 +331,11 @@ public class PrincipalController implements Initializable {
 		}
 	}
 
+	/**
+	 * Sacar grupo random.
+	 *
+	 * @return the grupos
+	 */
 	private Grupos sacarGrupoRandom() {
 		try (Connection con = new Conector().getMySQLConnection()) {
 			PreparedStatement sacarGrupoRandom = con.prepareStatement(
@@ -256,6 +361,11 @@ public class PrincipalController implements Initializable {
 		return null;
 	}
 
+	/**
+	 * Mostrar mensajes selec.
+	 *
+	 * @param event the event
+	 */
 	@FXML
 	void mostrarMensajesSelec(MouseEvent event) {
 		chat.setVisible(true);
@@ -270,6 +380,13 @@ public class PrincipalController implements Initializable {
 		}
 	}
 
+	/**
+	 * Cambiar mensajes mostrados.
+	 *
+	 * @param grupoSeleccionado the grupo seleccionado
+	 * @throws SQLTimeoutException the SQL timeout exception
+	 * @throws SQLException the SQL exception
+	 */
 	private void cambiarMensajesMostrados(Grupos grupoSeleccionado) throws SQLTimeoutException, SQLException {
 		obsListExtMensajes.clear();
 		obsListMisMensajes.clear();
@@ -286,6 +403,11 @@ public class PrincipalController implements Initializable {
 		listViewMisMensajes.setItems(obsListMisMensajes);
 	}
 
+	/**
+	 * Enviar mensaje.
+	 *
+	 * @param event the event
+	 */
 	@FXML
 	void enviarMensaje(ActionEvent event) {
 		try {
@@ -305,6 +427,9 @@ public class PrincipalController implements Initializable {
 		}
 	}
 
+	/**
+	 * Efecto fade nombre grupo.
+	 */
 	private void efectoFadeNombreGrupo() {
 		FadeTransition fade = new FadeTransition();
 		fade.setDuration(Duration.millis(2000));

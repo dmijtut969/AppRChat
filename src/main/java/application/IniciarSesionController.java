@@ -1,3 +1,6 @@
+/*
+ * @author Daniel Mijens Tutor
+ */
 package application;
 
 import java.io.IOException;
@@ -17,34 +20,50 @@ import sesion.SesionActual;
 import utils.CustomAlerta;
 import utils.CustomException;
 
-
-
-
+/**
+ * The Class IniciarSesionController.
+ */
 public class IniciarSesionController {
 
+    /** The anchor. */
     @FXML
     private AnchorPane anchor;
 
+    /** The pass field password. */
     @FXML
     private PasswordField passFieldPassword;
 
+    /** The text field nombre usuario. */
     @FXML
     private TextField textFieldNombreUsuario;
 
+    /** The btn salir. */
     @FXML
     private Button btnSalir;
 
+    /** The btn no tiene cuenta. */
     @FXML
     private Button btnNoTieneCuenta;
 
+    /** The btn iniciar sesion. */
     @FXML
     private Button btnIniciarSesion;
 
+    /**
+     * Cerrar app.
+     *
+     * @param event the event
+     */
     @FXML
     void cerrarApp(ActionEvent event) {
     	App.salirStage();
     }
 
+    /**
+     * Iniciar sesion.
+     *
+     * @param event the event
+     */
     @FXML
     void iniciarSesion(ActionEvent event) {
     	try {
@@ -69,6 +88,12 @@ public class IniciarSesionController {
 		}
     }
 
+    /**
+     * No tiene cuenta.
+     *
+     * @param event the event
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @FXML
     void noTieneCuenta(ActionEvent event) throws IOException {
     	App.setRoot("registro");

@@ -1,3 +1,6 @@
+/*
+ * @author Daniel Mijens Tutor
+ */
 package application;
 
 import javafx.application.Application;
@@ -10,12 +13,19 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 /**
- * JavaFX App
+ * JavaFX App.
  */
 public class App extends Application {
 
+    /** The scene. */
     private static Scene scene;
     
+    /**
+     * Start.
+     *
+     * @param stage the stage
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("iniciarsesion"));
@@ -24,22 +34,48 @@ public class App extends Application {
         stage.show();
     }
 
+    /**
+     * Sets the root.
+     *
+     * @param fxml the new root
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
+    /**
+     * Load FXML.
+     *
+     * @param fxml the fxml
+     * @return the parent
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
+    /**
+     * The main method.
+     *
+     * @param args the arguments
+     */
     public static void main(String[] args) {
         launch();
     }
+    
+    /**
+     * Cambiar res A escena.
+     */
     public static void cambiarResAEscena() {
     	((Stage)scene.getWindow()).sizeToScene();
     	((Stage)scene.getWindow()).centerOnScreen();
     }
+    
+    /**
+     * Salir stage.
+     */
     public static void salirStage() {
     	((Stage)scene.getWindow()).close();
     }

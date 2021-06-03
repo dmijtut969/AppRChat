@@ -1,3 +1,6 @@
+/*
+ * @author Daniel Mijens
+ */
 package rchat;
 
 import static org.junit.Assert.assertFalse;
@@ -24,24 +27,38 @@ import conectorManager.UsuarioManager;
 import sesion.Mensaje;
 import utils.CustomException;
 
+/**
+ * Class MensajeManagerTest.
+ */
 @ExtendWith(MockitoExtension.class)
 public class MensajeManagerTest {
+	
+	/** The mensaje. */
 	Mensaje mensaje;
 
+	/** The con. */
 	@Mock
 	Connection con;
 
+	/** The prep stat. */
 	@Mock
 	PreparedStatement prepStat;
 
+	/** The usuario mock. */
 	@InjectMocks
 	Mensaje usuarioMock = new Mensaje();
 
+	/**
+	 * Antes del test.
+	 */
 	@BeforeEach
 	void antesDeTest() {
 		System.out.println("--------------INICIO TEST--------------");
 	}
 
+	/**
+	 * Find mensaje by grupo OK.
+	 */
 	@Test
 	void findMensajeByGrupo_OK(){
 		try {
@@ -57,6 +74,9 @@ public class MensajeManagerTest {
 		}
 	}
 	
+	/**
+	 * Find mensaje by grupo NOT OK.
+	 */
 	@Test
 	void findMensajeByGrupo_NOT_OK(){
 		try {
@@ -72,6 +92,9 @@ public class MensajeManagerTest {
 		}
 	}
 	
+	/**
+	 * Sacar ultimos mensajes grupo con limite OK.
+	 */
 	@Test
 	void sacarUltimosMensajesGrupoConLimite_OK(){
 		try {
@@ -84,6 +107,9 @@ public class MensajeManagerTest {
 		}
 	}
 	
+	/**
+	 * Sacar ultimos mensajes grupo con limite NOT OK.
+	 */
 	@Test
 	void sacarUltimosMensajesGrupoConLimite_NOT_OK(){
 		try {
@@ -95,6 +121,10 @@ public class MensajeManagerTest {
 			e.getStackTrace();
 		}
 	}
+	
+	/**
+	 * Despues de test.
+	 */
 	@BeforeEach
 	void despuesDeTest() {
 		System.out.println("--------------FIN DEL TEST--------------");

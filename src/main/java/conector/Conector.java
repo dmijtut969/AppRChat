@@ -1,3 +1,6 @@
+/*
+ * @author Daniel Mijens Tutor
+ */
 package conector;
 
 import java.io.IOException;
@@ -6,14 +9,18 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+// TODO: Auto-generated Javadoc
 /**
- * 
- * Metodo para conectar la base de datos en la nube con la app en Java
- * 
+ * Metodo para conectar la base de datos en la nube con la app en Java.
  */
 public class Conector {
+	
+	/** The prop. */
 	Properties prop = new Properties();
 
+	/**
+	 * Instantiates a new conector.
+	 */
 	public Conector() {
 		try {
 			prop.load(getClass().getClassLoader().getResourceAsStream("config.properties"));
@@ -22,6 +29,11 @@ public class Conector {
 		}
 	}
 
+	/**
+	 * Gets the my SQL connection.
+	 *
+	 * @return the my SQL connection
+	 */
 	public Connection getMySQLConnection() {
 		try {
 
@@ -41,6 +53,11 @@ public class Conector {
 		return null;
 	}
 
+	/**
+	 * Gets the url.
+	 *
+	 * @return the url
+	 */
 	public String getURL() {
 		return new StringBuilder().append(prop.getProperty(MySQLConstants.URL_PREFIX))
 				.append(prop.getProperty(MySQLConstants.URL_HOST)).append(":")

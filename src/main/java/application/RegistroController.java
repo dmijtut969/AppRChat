@@ -1,3 +1,6 @@
+/*
+ * @author Daniel Mijens Tutor
+ */
 package application;
 
 import java.io.IOException;
@@ -16,43 +19,70 @@ import javafx.scene.layout.AnchorPane;
 import utils.CustomAlerta;
 import utils.CustomException;
 
+/**
+ * The Class RegistroController.
+ */
 public class RegistroController {
 
+	/** The anchor. */
 	@FXML
 	private AnchorPane anchor;
 
+	/** The text field email. */
 	@FXML
 	private TextField textFieldEmail;
 
+	/** The text field nombre usuario. */
 	@FXML
 	private TextField textFieldNombreUsuario;
 
+	/** The pass field password. */
 	@FXML
 	private PasswordField passFieldPassword;
 
+	/** The pass field rep password. */
 	@FXML
 	private PasswordField passFieldRepPassword;
 
+	/** The btn tiene cuenta. */
 	@FXML
 	private Button btnTieneCuenta;
 
+	/** The btn registrarse. */
 	@FXML
 	private Button btnRegistrarse;
 
+	/** The btn salir. */
 	@FXML
 	private Button btnSalir;
 
+	/**
+	 * Tiene cuenta.
+	 *
+	 * @param event the event
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	@FXML
 	void TieneCuenta(ActionEvent event) throws IOException {
 		App.setRoot("iniciarSesion");
 		App.cambiarResAEscena();
 	}
 
+	/**
+	 * Cerrar app.
+	 *
+	 * @param event the event
+	 */
 	@FXML
 	void cerrarApp(ActionEvent event) {
 		App.salirStage();
 	}
 
+	/**
+	 * Registrarse.
+	 *
+	 * @param event the event
+	 */
 	@FXML
 	void registrarse(ActionEvent event) {
 		try {

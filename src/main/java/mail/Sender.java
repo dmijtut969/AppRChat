@@ -1,3 +1,6 @@
+/*
+ * @author Daniel Mijens Tutor
+ */
 package mail;
 
 import java.io.File;
@@ -28,16 +31,44 @@ import com.sun.mail.handlers.multipart_mixed;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * The Class Sender.
+ */
 public class Sender {
 
+	/**
+	 * Sets the mail prop.
+	 *
+	 * @param mailProp the new mail prop
+	 */
 	@Setter
+	
+	/**
+	 * Gets the mail prop.
+	 *
+	 * @return the mail prop
+	 */
 	@Getter
 	Properties mailProp = new Properties();
 
+	/**
+	 * Sets the credencial prop.
+	 *
+	 * @param credencialProp the new credencial prop
+	 */
 	@Setter
+	
+	/**
+	 * Gets the credencial prop.
+	 *
+	 * @return the credencial prop
+	 */
 	@Getter
 	Properties credencialProp = new Properties();
 
+	/**
+	 * Instantiates a new sender.
+	 */
 	public Sender() {
 		try {
 			// Loads all the properties of file "mail.properties".
@@ -48,6 +79,18 @@ public class Sender {
 		}
 	}
 
+	/**
+	 * Send.
+	 *
+	 * @param from the from
+	 * @param to the to
+	 * @param subject the subject
+	 * @param text the text
+	 * @param content the content
+	 * @return true, if successful
+	 * @throws FileNotFoundException the file not found exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public boolean send(String from, String to, String subject, String text, String content) throws FileNotFoundException, IOException {
 		// Get the Session object.// and pass username and password
 		Session session = createSession();
@@ -106,6 +149,15 @@ public class Sender {
 
 	}
 
+	/**
+	 * Send.
+	 *
+	 * @param from the from
+	 * @param to the to
+	 * @param subject the subject
+	 * @param content the content
+	 * @return true, if successful
+	 */
 	public boolean send(String from, String to, String subject, String content) {
 		// Get the Session object.// and pass username and password
 		Session session = createSession();
@@ -138,6 +190,11 @@ public class Sender {
 
 	}
 
+	/**
+	 * Creates the session.
+	 *
+	 * @return the session
+	 */
 	private Session createSession() {
 		Session session = Session.getInstance(mailProp, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
@@ -152,6 +209,13 @@ public class Sender {
 		return session;
 	}
 
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 * @throws FileNotFoundException the file not found exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		new Sender().send("twlster.mk@gmail.com", "mcruzlp@gmail.com", "Hola =D",
 				"<b>Asi se envian correos con Java...<b>","c:\\DEV\\temp\\mail.properties");
