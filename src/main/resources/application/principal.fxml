@@ -75,15 +75,10 @@
                                     </Label>
                                     <AnchorPane prefHeight="38.0" prefWidth="1010.0">
                                        <children>
-                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f86dc3" height="443.0" layoutX="50.0" stroke="BLACK" strokeType="INSIDE" width="910.0" />
-                                          <AnchorPane layoutX="49.0" prefHeight="443.0" prefWidth="910.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="49.0" AnchorPane.rightAnchor="51.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <ListView fx:id="listViewExtMensajes" blendMode="DARKEN" fixedCellSize="-20.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="441.0" prefWidth="910.0" />
-                                             </children>
-                                          </AnchorPane>
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f86dc3" height="443.0" layoutX="50.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="910.0" />
                                           <AnchorPane layoutX="50.0" prefHeight="443.0" prefWidth="910.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <ListView fx:id="listViewMisMensajes" blendMode="DARKEN" fixedCellSize="-20.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="443.0" prefWidth="1010.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                <ListView fx:id="listViewMisMensajes" fixedCellSize="-20.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="443.0" prefWidth="1010.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                              </children>
                                           </AnchorPane>
                                        </children>

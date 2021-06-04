@@ -3,6 +3,7 @@
  */
 package dao;
 
+import javafx.scene.layout.HBox;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -209,17 +209,4 @@ public class Sender {
 		return session;
 	}
 
-	/**
-	 * The main method.
-	 *
-	 * @param args the arguments
-	 * @throws FileNotFoundException the file not found exception
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
-	public static void main(String[] args) throws FileNotFoundException, IOException {
-		new Sender().send("twlster.mk@gmail.com", "mcruzlp@gmail.com", "Hola =D",
-				"<b>Asi se envian correos con Java...<b>","c:\\DEV\\temp\\mail.properties");
-
-	}
-
 }

@@ -10,14 +10,14 @@ package sesion;
 public class SesionActual {
 	
 	/** Usuario actual. */
-	private static Mensaje usuarioActual = null;
+	private static Usuario usuarioActual = null;
 
 	/**
 	 * Gets the usuario actual.
 	 *
 	 * @return the usuario actual
 	 */
-	public static Mensaje getUsuarioActual() {
+	public static Usuario getUsuarioActual() {
 		return usuarioActual;
 	}
 
@@ -26,7 +26,7 @@ public class SesionActual {
 	 *
 	 * @param usuarioActual the new usuario actual
 	 */
-	public static void setUsuarioActual(Mensaje usuarioActual) {
+	public static void setUsuarioActual(Usuario usuarioActual) {
 		SesionActual.usuarioActual = usuarioActual;
 	}
 }

@@ -51,6 +51,8 @@ public class Mensaje {
 	/** The hora. */
 	private String hora;
 	
+	private boolean esDelUsuarioLoggeado;
+	
 	/**
 	 * Instantiates a new mensaje.
 	 *
@@ -84,6 +86,13 @@ public Mensaje() {
 		this.mensaje = "";
 		this.hora = "";
 	}
+public Mensaje(boolean esDelUsuarioLoggeado) {
+	super();
+	this.emisor = "";
+	this.mensaje = "";
+	this.hora = "";
+	this.esDelUsuarioLoggeado = esDelUsuarioLoggeado;
+}
 	
 	/**
 	 * To string.

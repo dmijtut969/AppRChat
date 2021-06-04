@@ -25,7 +25,7 @@ import lombok.Setter;
  * Instantiates a new mensaje.
  */
 @NoArgsConstructor
-public class Mensaje implements Comparable<Mensaje>{
+public class Usuario implements Comparable<Usuario>{
 	
 	/** The id. */
 	private Integer id;
@@ -47,7 +47,7 @@ public class Mensaje implements Comparable<Mensaje>{
 	 * @param password the password
 	 * @param email the email
 	 */
-	public Mensaje(int id,String nombreUsuario,String password,String email) {
+	public Usuario(int id,String nombreUsuario,String password,String email) {
 		this.id = id;
 		this.nombreUsuario = nombreUsuario;
 		this.password = password;
@@ -61,7 +61,7 @@ public class Mensaje implements Comparable<Mensaje>{
 	 * @return the int
 	 */
 	@Override
-	public int compareTo(Mensaje usuario) {
+	public int compareTo(Usuario usuario) {
 		
 		return this.getId().compareTo(usuario.getId());
 	}

@@ -36,16 +36,17 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 import javafx.util.Duration;
 import lombok.NoArgsConstructor;
 import sesion.SesionActual;
 import utils.CustomAlerta;
 import utils.CustomException;
-
 
 /**
  * Instantiates a new principal controller.
@@ -105,13 +106,6 @@ public class PrincipalController implements Initializable {
 	@FXML
 	private Label lblNombreGrupo;
 
-	/** The list view ext mensajes. */
-	@FXML
-	private ListView<Mensaje> listViewExtMensajes;
-
-	/** The obs list ext mensajes. */
-	ObservableList<Mensaje> obsListExtMensajes = FXCollections.observableArrayList();
-
 	/** The list view mis mensajes. */
 	@FXML
 	private ListView<Mensaje> listViewMisMensajes;
@@ -141,47 +135,20 @@ public class PrincipalController implements Initializable {
 	/**
 	 * Initialize.
 	 *
-	 * @param location the location
+	 * @param location  the location
 	 * @param resources the resources
 	 */
-
-	static class Cell extends ListCell<String> {
-			HBox hbox = new HBox();
-			Button btn = new Button("Prueba");
-			Label label = new Label("");
-			Pane pane = new Pane();
-			
-			public Cell() {
-				super();
-				hbox.getChildren().addAll(label,pane,btn);
-				HBox.setHgrow(pane, Priority.ALWAYS);
-			}
-			
-			public void updateItem(String name, boolean empty) {
-				super.updateItem(name, empty);
-				setText(null);
-				setGraphic(null);
-				if (name!=null && !empty) {
-					label.setText(name);
-					setGraphic(hbox);
-				}
-			}
-		}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		lblBienvenidaUsuario.setText("¡Bienvenido @" + SesionActual.getUsuarioActual().getNombreUsuario() + "!");
 		efectoFadeNombreGrupo();
 		listViewGrupos.setStyle("-fx-font-size: 1.5em;");
 		listViewMisMensajes.setStyle("-fx-font-size: 1.3em;");
-		listViewExtMensajes.setStyle("-fx-font-size: 1.3em;");
 		listViewMisMensajes.setPadding(new Insets(0));
-		listViewExtMensajes.setPadding(new Insets(0));
 		chat.setVisible(false);
 		mostrarMisGrupos();
-		
-		listViewGrupos.setCellFactory(cell-> new Cell());
-
 	}
+
 	/**
 	 * Cerrar app.
 	 *
@@ -228,6 +195,8 @@ public class PrincipalController implements Initializable {
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
+		listViewGrupos.setItems(obsListGrupos);
+
 	}
 
 	/**
@@ -288,19 +257,21 @@ public class PrincipalController implements Initializable {
 		String usuarioABorrar = "";
 		if (grupoSeleccionado.getCreador().equals(usuarioActual)) {
 			borrarGrupo(new ActionEvent()); // Si el creador se sale del grupo se borrara el mismo
-		}else if (!grupoSeleccionado.getUsuario1().equals(null) || grupoSeleccionado.getUsuario1().equals(usuarioActual))
+		} else if (!grupoSeleccionado.getUsuario1().equals(null)
+				|| grupoSeleccionado.getUsuario1().equals(usuarioActual))
 			usuarioABorrar = "usuario1";
 		else if (!grupoSeleccionado.getUsuario2().equals(null) || grupoSeleccionado.getUsuario2().equals(usuarioActual))
 			usuarioABorrar = "usuario2";
 		else if (!grupoSeleccionado.getUsuario3().equals(null) || grupoSeleccionado.getUsuario3().equals(usuarioActual))
-			usuarioABorrar = "usuario3";		System.out.println(usuarioABorrar);
+			usuarioABorrar = "usuario3";
+		System.out.println(usuarioABorrar);
 		if (!usuarioABorrar.equals("creador")) {
 			try (Connection con = new Conector().getMySQLConnection()) {
 				PreparedStatement salirse = con
 						.prepareStatement("UPDATE Grupos SET " + usuarioABorrar + " = ? " + "where idGrupo = ?");
 				salirse.setNull(1, Types.VARCHAR);
 				salirse.setInt(2, grupoSeleccionado.getIdGrupo());
-				if (salirse.executeUpdate()>0) {
+				if (salirse.executeUpdate() > 0) {
 					mostrarMisGrupos();
 					chat.setVisible(false);
 				}
@@ -385,22 +356,24 @@ public class PrincipalController implements Initializable {
 	 *
 	 * @param grupoSeleccionado the grupo seleccionado
 	 * @throws SQLTimeoutException the SQL timeout exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException        the SQL exception
 	 */
 	private void cambiarMensajesMostrados(Grupos grupoSeleccionado) throws SQLTimeoutException, SQLException {
-		obsListExtMensajes.clear();
+
 		obsListMisMensajes.clear();
 		for (Mensaje mensaje : MensajeManager.sacarUltimosMensajesGrupoConLimite(grupoSeleccionado.getIdGrupo(), 10)) {
 			if (mensaje.getEmisor().equals(SesionActual.getUsuarioActual().getNombreUsuario())) {
+				mensaje.setEsDelUsuarioLoggeado(true);
 				obsListMisMensajes.add(mensaje);
-				obsListExtMensajes.add(new Mensaje());
+
 			} else {
-				obsListExtMensajes.add(mensaje);
-				obsListMisMensajes.add(new Mensaje());
+				mensaje.setEsDelUsuarioLoggeado(false);
+				obsListMisMensajes.add(mensaje);
 			}
 		}
-		listViewExtMensajes.setItems(obsListExtMensajes);
 		listViewMisMensajes.setItems(obsListMisMensajes);
+		listViewMisMensajes.setCellFactory(gruposListView -> new ListViewCell());
+		listViewMisMensajes.setPadding(new Insets(0));
 	}
 
 	/**
