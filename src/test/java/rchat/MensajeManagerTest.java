@@ -24,7 +24,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import conectorManager.MensajeManager;
 import conectorManager.UsuarioManager;
-import sesion.Usuario;
+import sesion.Mensaje;
 import utils.CustomException;
 
 /**
@@ -34,7 +34,7 @@ import utils.CustomException;
 public class MensajeManagerTest {
 	
 	/** The mensaje. */
-	Usuario mensaje;
+	Mensaje mensaje;
 
 	/** The con. */
 	@Mock
@@ -46,7 +46,7 @@ public class MensajeManagerTest {
 
 	/** The usuario mock. */
 	@InjectMocks
-	Usuario usuarioMock = new Usuario();
+	Mensaje usuarioMock = new Mensaje();
 
 	/**
 	 * Antes del test.

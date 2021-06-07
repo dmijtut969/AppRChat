@@ -38,7 +38,7 @@ public class MensajeManager {
 			ArrayList<Mensaje> mensajesDelGrupo = new ArrayList<>();
 			while (result.next()) {
 				mensajesDelGrupo.add(new Mensaje(result.getInt("idMensaje"),result.getInt("idGrupo"), result.getString("emisor"),
-						result.getString("mensaje"), result.getString("fecha"),false));
+						result.getString("mensaje"), result.getString("fecha")));
 			}
 			return mensajesDelGrupo;
 		}
@@ -65,7 +65,7 @@ public class MensajeManager {
 			ArrayList<Mensaje> mensajesDelGrupoLimitados = new ArrayList<>();
 			while (result.next()) {
 				mensajesDelGrupoLimitados.add(new Mensaje(result.getInt("idMensaje"),result.getInt("idGrupo"), result.getString("emisor"),
-						result.getString("mensaje"), result.getString("fecha"),false));
+						result.getString("mensaje"), result.getString("fecha")));
 			}
 			return mensajesDelGrupoLimitados;
 		}
