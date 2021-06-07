@@ -18,6 +18,7 @@ import conector.Conector;
 import conectorManager.MensajeManager;
 import dao.Grupos;
 import dao.Mensaje;
+import sesion.Usuario;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
@@ -179,7 +180,6 @@ public class PrincipalController implements Initializable {
 		chat.setVisible(false);
 		mostrarMisGrupos();
 		
-		listViewGrupos.setCellFactory(cell-> new Cell());
 
 	}
 	/**

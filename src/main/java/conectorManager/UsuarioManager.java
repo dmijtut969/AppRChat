@@ -11,7 +11,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.SQLTimeoutException;
 
 import conector.Conector;
-import sesion.Mensaje;
+import sesion.Usuario;
 import utils.CustomException;
 
 /**
@@ -27,7 +27,7 @@ public class UsuarioManager {
 	 * @throws SQLTimeoutException the SQL timeout exception
 	 * @throws SQLException the SQL exception
 	 */
-	public static Mensaje findById(int idUsuario) throws SQLTimeoutException, SQLException {
+	public static Usuario findById(int idUsuario) throws SQLTimeoutException, SQLException {
 		try (Connection con = new Conector().getMySQLConnection()) {
 			PreparedStatement query = con.prepareStatement("SELECT * FROM Usuario WHERE idUsuario = ?");
 			query.setInt(1, idUsuario);
@@ -36,7 +36,7 @@ public class UsuarioManager {
 			if (!result.next()) {
 				System.out.println("No existe el usuario con esa id");
 			}
-			return new Mensaje(result.getInt("idUsuario"), result.getString("nombre_usuario"),
+			return new Usuario(result.getInt("idUsuario"), result.getString("nombre_usuario"),
 					result.getString("password"), result.getString("email"));
 		}
 	}
@@ -50,7 +50,7 @@ public class UsuarioManager {
 	 * @throws SQLException the SQL exception
 	 * @throws CustomException the custom exception
 	 */
-	public static Mensaje findByNombre(String nombreUsu) throws SQLTimeoutException, SQLException, CustomException {
+	public static Usuario findByNombre(String nombreUsu) throws SQLTimeoutException, SQLException, CustomException {
 		try (Connection con = new Conector().getMySQLConnection()) {
 			PreparedStatement query = con.prepareStatement("SELECT * FROM Usuario WHERE nombre_usuario = ?");
 			query.setString(1, nombreUsu);
@@ -59,7 +59,7 @@ public class UsuarioManager {
 			if (!result.next()) {
 				throw new CustomException("No existe el usuario");
 			}
-			return new Mensaje(result.getInt("idUsuario"), result.getString("nombre_usuario"),
+			return new Usuario(result.getInt("idUsuario"), result.getString("nombre_usuario"),
 					result.getString("password"), result.getString("email"));
 		}
 	}
@@ -92,7 +92,7 @@ public class UsuarioManager {
 	 * @throws SQLException the SQL exception
 	 * @throws CustomException the custom exception
 	 */
-	public static Mensaje findByEmail(String email) throws SQLTimeoutException, SQLException, CustomException {
+	public static Usuario findByEmail(String email) throws SQLTimeoutException, SQLException, CustomException {
 		try (Connection con = new Conector().getMySQLConnection()) {
 			PreparedStatement query = con.prepareStatement("SELECT * FROM Usuario WHERE email = ?");
 			query.setString(1, email);
@@ -101,7 +101,7 @@ public class UsuarioManager {
 			if (!result.next()) {
 				throw new CustomException("No existe ese usuario con ese email");
 			}
-			return new Mensaje(result.getInt("idUsuario"), result.getString("nombre_usuario"),
+			return new Usuario(result.getInt("idUsuario"), result.getString("nombre_usuario"),
 					result.getString("password"), result.getString("email"));
 		}
 	}

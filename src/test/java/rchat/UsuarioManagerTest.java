@@ -20,7 +20,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 
 import conectorManager.UsuarioManager;
-import sesion.Mensaje;
+import sesion.Usuario;
 import utils.CustomException;
 
 /**
@@ -31,7 +31,7 @@ import utils.CustomException;
 public class UsuarioManagerTest {
 	
 	/** The usuario. */
-	Mensaje usuario;
+	Usuario usuario;
 
 	/** The con. */
 	@Mock
@@ -43,7 +43,7 @@ public class UsuarioManagerTest {
 
 	/** The usuario mock. */
 	@InjectMocks
-	Mensaje usuarioMock = new Mensaje();
+	Usuario usuarioMock = new Usuario();
 
 	/**
 	 * Antes del test.
