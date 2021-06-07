@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Ellipse?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LayoutMensajesController">
+   <children>
+      <Ellipse fx:id="fondoMensaje" fill="#1ebcb7" layoutX="700.0" layoutY="31.0" radiusX="141.0" radiusY="28.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Label fx:id="lblMensaje" alignment="CENTER" layoutX="600.0" layoutY="-9.0" prefHeight="78.0" prefWidth="210.0" text="MensajePrueba" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+   </children>
+</AnchorPane>

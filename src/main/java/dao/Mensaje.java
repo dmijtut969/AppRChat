@@ -51,6 +51,8 @@ public class Mensaje {
 	/** The hora. */
 	private String hora;
 	
+	private boolean usuarioActual;
+	
 	/**
 	 * Instantiates a new mensaje.
 	 *
@@ -93,6 +95,14 @@ public Mensaje() {
 	@Override
 	public String toString() {					
 		return emisor + "     " + mensaje + "     " + this.hora; 
+	}
+	@Override
+	public boolean equals(Object obj) {
+	
+		Mensaje other = (Mensaje) obj;
+		if (idMensaje != other.idMensaje)
+			return false;		
+		return true;
 	}
 	
 	
