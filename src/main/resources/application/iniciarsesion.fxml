@@ -31,5 +31,10 @@
       <Button fx:id="btnSalir" layoutX="562.0" layoutY="14.0" mnemonicParsing="false" onAction="#cerrarApp" text="X" textFill="RED" />
       <Button fx:id="btnNoTieneCuenta" layoutX="163.0" layoutY="215.0" mnemonicParsing="false" onAction="#noTieneCuenta" prefHeight="31.0" prefWidth="106.0" text="No tengo cuenta" />
       <Button fx:id="btnIniciarSesion" layoutX="346.0" layoutY="215.0" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="31.0" prefWidth="106.0" text="Iniciar Sesion" />
+      <Button fx:id="btnRecordarContra" layoutX="169.0" layoutY="253.0" mnemonicParsing="false" onAction="#recordarContra" text="Recordar contraseña">
+         <graphic>
+            <TextField fx:id="txtFieldEmailContra" promptText="Inserte su email" />
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

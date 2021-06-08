@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(#FF3366,#BA265D);" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RegistroController">
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(#65c4c7,#f57ffc);" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RegistroController">
    <children>
       <ImageView fitHeight="147.0" fitWidth="298.0" layoutX="154.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -42,6 +42,6 @@
       </Label>
       <Button fx:id="btnTieneCuenta" layoutX="163.0" layoutY="325.0" mnemonicParsing="false" onAction="#TieneCuenta" prefHeight="31.0" prefWidth="106.0" text="Tengo cuenta" />
       <Button fx:id="btnRegistrarse" layoutX="346.0" layoutY="325.0" mnemonicParsing="false" onAction="#registrarse" prefHeight="31.0" prefWidth="106.0" text="Registrarse" />
-      <Button fx:id="btnSalir" layoutX="562.0" layoutY="14.0" mnemonicParsing="false" onAction="#cerrarApp" text="X" />
+      <Button fx:id="btnSalir" layoutX="562.0" layoutY="14.0" mnemonicParsing="false" onAction="#cerrarApp" text="X" textFill="RED" />
    </children>
 </AnchorPane>
