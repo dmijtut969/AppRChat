@@ -138,29 +138,6 @@ public class PrincipalController implements Initializable {
 	 * @param resources the resources
 	 */
 
-	static class Cell extends ListCell<String> {
-		HBox hbox = new HBox();
-		Button btn = new Button("Prueba");
-		Label label = new Label("");
-		Pane pane = new Pane();
-
-		public Cell() {
-			super();
-			hbox.getChildren().addAll(label, pane, btn);
-			HBox.setHgrow(pane, Priority.ALWAYS);
-		}
-
-		public void updateItem(String name, boolean empty) {
-			super.updateItem(name, empty);
-			setText(null);
-			setGraphic(null);
-			if (name != null && !empty) {
-				label.setText(name);
-				setGraphic(hbox);
-			}
-		}
-	}
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		lblBienvenidaUsuario.setText("¡Bienvenido @" + SesionActual.getUsuarioActual().getNombreUsuario() + "!");
@@ -169,6 +146,7 @@ public class PrincipalController implements Initializable {
 		listViewMisMensajes.setStyle("-fx-font-size: 1.3em;");
 		listViewMisMensajes.setPadding(new Insets(0));
 		mostrarMisGrupos();
+		listViewMisMensajes.setVisible(false);
 
 	}
 
@@ -276,27 +254,34 @@ public class PrincipalController implements Initializable {
 		Grupos grupoSeleccionado = listViewGrupos.getSelectionModel().getSelectedItem();
 		String usuarioActual = SesionActual.getUsuarioActual().getNombreUsuario();
 		String usuarioABorrar = "";
-		if (grupoSeleccionado.getCreador().equals(usuarioActual)) {
-			borrarGrupo(new ActionEvent()); // Si el creador se sale del grupo se borrara el mismo
-		} else if (!grupoSeleccionado.getUsuario1().equals(null)
-				|| grupoSeleccionado.getUsuario1().equals(usuarioActual))
-			usuarioABorrar = "usuario1";
-		else if (!grupoSeleccionado.getUsuario2().equals(null) || grupoSeleccionado.getUsuario2().equals(usuarioActual))
-			usuarioABorrar = "usuario2";
-		else if (!grupoSeleccionado.getUsuario3().equals(null) || grupoSeleccionado.getUsuario3().equals(usuarioActual))
-			usuarioABorrar = "usuario3";
-		System.out.println(usuarioABorrar);
-		if (!usuarioABorrar.equals("creador")) {
-			try (Connection con = new Conector().getMySQLConnection()) {
-				PreparedStatement salirse = con
-						.prepareStatement("UPDATE Grupos SET " + usuarioABorrar + " = ? " + "where idGrupo = ?");
-				salirse.setNull(1, Types.VARCHAR);
-				salirse.setInt(2, grupoSeleccionado.getIdGrupo());
-				if (salirse.executeUpdate() > 0) {
-					mostrarMisGrupos();
-				
-				}
+		if (grupoSeleccionado == null) {
+			new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "No ha seleccionado un grupo",
+					"Elija el grupo del que desea salir");
+		} else {
+			if (grupoSeleccionado.getCreador().equals(usuarioActual)) {
+				borrarGrupo(new ActionEvent()); // Si el creador se sale del grupo se borrara el mismo
+			} else if (!grupoSeleccionado.getUsuario1().equals(null)
+					|| grupoSeleccionado.getUsuario1().equals(usuarioActual))
+				usuarioABorrar = "usuario1";
+			else if (!grupoSeleccionado.getUsuario2().equals(null)
+					|| grupoSeleccionado.getUsuario2().equals(usuarioActual))
+				usuarioABorrar = "usuario2";
+			else if (!grupoSeleccionado.getUsuario3().equals(null)
+					|| grupoSeleccionado.getUsuario3().equals(usuarioActual))
+				usuarioABorrar = "usuario3";
+			System.out.println(usuarioABorrar);
+			if (!usuarioABorrar.equals("creador")) {
+				try (Connection con = new Conector().getMySQLConnection()) {
+					PreparedStatement salirse = con
+							.prepareStatement("UPDATE Grupos SET " + usuarioABorrar + " = ? " + "where idGrupo = ?");
+					salirse.setNull(1, Types.VARCHAR);
+					salirse.setInt(2, grupoSeleccionado.getIdGrupo());
+					if (salirse.executeUpdate() > 0) {
+						mostrarMisGrupos();
 
+					}
+
+				}
 			}
 		}
 	}
@@ -311,16 +296,17 @@ public class PrincipalController implements Initializable {
 	@FXML
 	boolean borrarGrupo(ActionEvent event) throws SQLException {
 		Grupos grupoSeleccionado = listViewGrupos.getSelectionModel().getSelectedItem();
+
 		try (Connection con = new Conector().getMySQLConnection()) {
 			PreparedStatement query = con.prepareStatement("DELETE FROM Grupos WHERE idGrupo = ?");
 			query.setInt(1, grupoSeleccionado.getIdGrupo());
 			if (query.executeUpdate() > 0) {
 				mostrarMisGrupos();
-				
 				return true;
 			} else
 				return false;
 		}
+
 	}
 
 	/**
@@ -360,11 +346,12 @@ public class PrincipalController implements Initializable {
 	 */
 	@FXML
 	void mostrarMensajesSelec(MouseEvent event) {
-		
+
 		Grupos grupoSeleccionado = listViewGrupos.getSelectionModel().getSelectedItem();
 		lblNombreGrupo.setText(grupoSeleccionado.getNombre());
 		try {
 			cambiarMensajesMostrados(grupoSeleccionado);
+			listViewMisMensajes.setVisible(true);
 		} catch (SQLTimeoutException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -391,7 +378,6 @@ public class PrincipalController implements Initializable {
 				mensaje.setUsuarioActual(false);
 			}
 			obsListMisMensajes.add(mensaje);
-			System.out.println("Añado " + mensaje.getIdMensaje());
 		}
 		listViewMisMensajes.setItems(obsListMisMensajes);
 		listViewMisMensajes.setCellFactory(new Callback<ListView<Mensaje>, javafx.scene.control.ListCell<Mensaje>>() {
@@ -411,10 +397,15 @@ public class PrincipalController implements Initializable {
 	void enviarMensaje(ActionEvent event) {
 		try {
 			Grupos grupoSeleccionado = listViewGrupos.getSelectionModel().getSelectedItem();
-			MensajeManager.crearMensaje(new Mensaje(grupoSeleccionado.getIdGrupo(),
-					SesionActual.getUsuarioActual().getNombreUsuario(), textAreaMensaje.getText()));
-			textAreaMensaje.clear();
-			cambiarMensajesMostrados(grupoSeleccionado);
+			if (grupoSeleccionado == null) {
+				new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "No ha seleccionado un grupo",
+						"Elija un grupo antes de enviar un mensaje");
+			} else {
+				MensajeManager.crearMensaje(new Mensaje(grupoSeleccionado.getIdGrupo(),
+						SesionActual.getUsuarioActual().getNombreUsuario(), textAreaMensaje.getText()));
+				textAreaMensaje.clear();
+				cambiarMensajesMostrados(grupoSeleccionado);
+			}
 		} catch (SQLIntegrityConstraintViolationException e) {
 			e.printStackTrace();
 		} catch (SQLTimeoutException e) {
@@ -438,5 +429,28 @@ public class PrincipalController implements Initializable {
 		fade.setAutoReverse(true);
 		fade.setNode(lblNombreGrupo);
 		fade.play();
+	}
+
+	static class Cell extends ListCell<String> {
+		HBox hbox = new HBox();
+		Button btn = new Button("Prueba");
+		Label label = new Label("");
+		Pane pane = new Pane();
+
+		public Cell() {
+			super();
+			hbox.getChildren().addAll(label, pane, btn);
+			HBox.setHgrow(pane, Priority.ALWAYS);
+		}
+
+		public void updateItem(String name, boolean empty) {
+			super.updateItem(name, empty);
+			setText(null);
+			setGraphic(null);
+			if (name != null && !empty) {
+				label.setText(name);
+				setGraphic(hbox);
+			}
+		}
 	}
 }

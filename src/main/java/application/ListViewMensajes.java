@@ -8,6 +8,7 @@ import javafx.geometry.NodeOrientation;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.TextAlignment;
 
 public class ListViewMensajes extends ListCell<Mensaje> {
 
@@ -18,22 +19,19 @@ public class ListViewMensajes extends ListCell<Mensaje> {
 		if (mensaje != null) {
 			try {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("mensajes.fxml"));
-				AnchorPane cellLayout = (AnchorPane) loader.load();
+				loader.load();
 				LayoutMensajesController controller = loader.getController();
+				controller.setGrupoLabel(controller.crearLabel(mensaje.getMensaje(), "elliptical-label"));
 				
-				controller.setLblMensaje(mensaje.getMensaje());
-				controller.unirAnchoMensaje();
-			;
 			if (mensaje.isUsuarioActual()) {
-				this.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);				
+				this.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
 			} else {
 				this.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
 			}
-			setGraphic(cellLayout);
+			setGraphic(controller.crearLabel(mensaje.getMensaje(), "elliptical-label"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		
 		} else {
 			setGraphic(null);
 		}

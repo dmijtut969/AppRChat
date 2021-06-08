@@ -14,13 +14,13 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: linear-gradient(#FF3366,#BA265D);" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PrincipalController">
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: linear-gradient(#65c4c7,#f57ffc);" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PrincipalController">
    <children>
       <VBox fx:id="separadorHeaderBody" prefHeight="700.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane fx:id="header" prefHeight="57.0" prefWidth="1300.0" style="-fx-background-color: linear-gradient(#f57ffc,#65c4c7);">
                <children>
-                  <ImageView fitHeight="50.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="4.0">
+                  <ImageView fitHeight="56.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="4.0">
                      <image>
                         <Image url="@../img/logo%20rchat.png" />
                      </image>
