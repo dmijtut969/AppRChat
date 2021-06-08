@@ -1,12 +1,10 @@
 package application;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+
 
 import dao.Mensaje;
 import javafx.beans.binding.DoubleBinding;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Ellipse;

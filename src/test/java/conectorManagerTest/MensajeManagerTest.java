@@ -1,18 +1,15 @@
 /*
  * @author Daniel Mijens
  */
-package rchat;
+package conectorManagerTest;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.SQLTimeoutException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -23,9 +20,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import conectorManager.MensajeManager;
-import conectorManager.UsuarioManager;
 import sesion.Usuario;
-import utils.CustomException;
 
 /**
  * Class MensajeManagerTest.

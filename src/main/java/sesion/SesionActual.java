@@ -3,8 +3,6 @@
  */
 package sesion;
 
-import sesion.Usuario;
-
 /**
  * The Class SesionActual.
  * @author Daniel Mijens Tutor

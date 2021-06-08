@@ -16,7 +16,6 @@ import java.util.ResourceBundle;
 
 import conector.Conector;
 import conectorManager.MensajeManager;
-import conectorManager.UsuarioManager;
 import dao.Grupos;
 import dao.Mensaje;
 import javafx.animation.Animation;
@@ -44,10 +43,7 @@ import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import javafx.util.Duration;
 import lombok.NoArgsConstructor;
-import mail.CredentialsConstants;
-import mail.Sender;
 import sesion.SesionActual;
-import sesion.Usuario;
 import utils.CustomAlerta;
 import utils.CustomException;
 
