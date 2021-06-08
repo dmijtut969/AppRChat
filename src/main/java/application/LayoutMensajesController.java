@@ -3,6 +3,7 @@ package application;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dao.Mensaje;
 import javafx.beans.binding.DoubleBinding;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,9 +21,9 @@ public class LayoutMensajesController {
 		grupoLabel = grupo;
 	}
 
-	public Group crearLabel(String mensaje, String styleClass) {
+	public Group crearLabel(Mensaje mensaje, String styleClass) {
 
-		Label label = new Label(mensaje);
+		Label label = new Label(mensaje.getMensaje());
 
 		Ellipse ellipse = new Ellipse();
 		ellipse.getStyleClass().add("ellipse");

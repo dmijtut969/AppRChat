@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: linear-gradient(#65c4c7,#f57ffc);" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PrincipalController">
@@ -68,22 +67,21 @@
                            <children>
                               <VBox fx:id="chat" alignment="TOP_CENTER" prefHeight="645.0" prefWidth="1010.0" style="-fx-background-color: #65c4c7;">
                                  <children>
-                                    <Label fx:id="lblNombreGrupo" alignment="CENTER" prefHeight="50.0" prefWidth="894.0" text="No ha seleccionado ningun grupo" textAlignment="CENTER" textFill="WHITE">
+                                    <Label fx:id="lblNombreGrupo" alignment="CENTER" prefHeight="49.0" prefWidth="1011.0" text="No ha seleccionado ningun grupo" textAlignment="CENTER" textFill="WHITE">
                                        <font>
                                           <Font name="Impact" size="21.0" />
                                        </font>
                                     </Label>
-                                    <AnchorPane fx:id="anchorChat" prefHeight="38.0" prefWidth="1010.0">
+                                    <AnchorPane fx:id="anchorChat" prefHeight="443.0" prefWidth="746.0">
                                        <children>
-                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f76dc500" height="443.0" layoutX="50.0" smooth="false" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="910.0" />
-                                          <AnchorPane layoutX="50.0" prefHeight="443.0" prefWidth="910.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
+                                          <AnchorPane layoutX="-12.0" prefHeight="443.0" prefWidth="1010.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <ListView fx:id="listViewMisMensajes" fixedCellSize="-20.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="443.0" prefWidth="1010.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                <ListView fx:id="listViewMisMensajes" fixedCellSize="-20.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="443.0" prefWidth="972.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                              </children>
                                           </AnchorPane>
                                        </children>
                                     </AnchorPane>
-                                    <HBox alignment="CENTER" prefHeight="144.0" prefWidth="1010.0" style="-fx-background-color: linear-gradient(#65c4c7,#f57ffc);">
+                                    <HBox alignment="CENTER" prefHeight="143.0" prefWidth="1010.0" style="-fx-background-color: linear-gradient(#65c4c7,#f57ffc);">
                                        <children>
                                           <Button fx:id="btnSalirDelGrupo" mnemonicParsing="false" onAction="#salirDeGrupo" prefHeight="42.0" prefWidth="62.0" text="Salir del grupo" textAlignment="CENTER" wrapText="true">
                                              <HBox.margin>

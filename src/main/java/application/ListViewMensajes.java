@@ -8,6 +8,7 @@ import javafx.geometry.NodeOrientation;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 
 public class ListViewMensajes extends ListCell<Mensaje> {
@@ -21,14 +22,19 @@ public class ListViewMensajes extends ListCell<Mensaje> {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("mensajes.fxml"));
 				loader.load();
 				LayoutMensajesController controller = loader.getController();
-				controller.setGrupoLabel(controller.crearLabel(mensaje.getMensaje(), "elliptical-label"));
-				
-			if (mensaje.isUsuarioActual()) {
-				this.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
-			} else {
-				this.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
-			}
-			setGraphic(controller.crearLabel(mensaje.getMensaje(), "elliptical-label"));
+				controller.setGrupoLabel(controller.crearLabel(mensaje, "elliptical-label"));
+				VBox vbox = new VBox();
+				Label lblEmisor = new Label();
+				vbox.getChildren().add(controller.crearLabel(mensaje, "elliptical-label"));
+				lblEmisor.setText(mensaje.getEmisor() + " - " + mensaje.getHora());
+				lblEmisor.setStyle("-fx-text-fill: white;");
+				vbox.getChildren().add(lblEmisor);
+				if (mensaje.isUsuarioActual()) {
+					this.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+				} else {
+					this.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+				}
+				setGraphic(vbox);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
