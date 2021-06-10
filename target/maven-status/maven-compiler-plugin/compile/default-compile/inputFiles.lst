@@ -1,21 +1,21 @@
-C:\Users\daniel.mijens.tutor\OneDrive - Accenture\DEV\git\Feliz\AppRChat\src\main\java\application\App.java
-C:\Users\daniel.mijens.tutor\OneDrive - Accenture\DEV\git\Feliz\AppRChat\src\main\java\mail\CredentialsConstants.java
-C:\Users\daniel.mijens.tutor\OneDrive - Accenture\DEV\git\Feliz\AppRChat\src\main\java\application\ListViewGrupos.java
-C:\Users\daniel.mijens.tutor\OneDrive - Accenture\DEV\git\Feliz\AppRChat\src\main\java\dao\Grupos.java
-C:\Users\daniel.mijens.tutor\OneDrive - Accenture\DEV\git\Feliz\AppRChat\src\main\java\sesion\SesionActual.java
-C:\Users\daniel.mijens.tutor\OneDrive - Accenture\DEV\git\Feliz\AppRChat\src\main\java\application\LayoutMensajesController.java
-C:\Users\daniel.mijens.tutor\OneDrive - Accenture\DEV\git\Feliz\AppRChat\src\main\java\application\RegistroController.java
-C:\Users\daniel.mijens.tutor\OneDrive - Accenture\DEV\git\Feliz\AppRChat\src\main\java\sesion\Usuario.java
-C:\Users\daniel.mijens.tutor\OneDrive - Accenture\DEV\git\Feliz\AppRChat\src\main\java\application\CrearGrupoController.java
-C:\Users\daniel.mijens.tutor\OneDrive - Accenture\DEV\git\Feliz\AppRChat\src\main\java\application\ListViewMensajes.java
-C:\Users\daniel.mijens.tutor\OneDrive - Accenture\DEV\git\Feliz\AppRChat\src\main\java\application\PrincipalController.java
-C:\Users\daniel.mijens.tutor\OneDrive - Accenture\DEV\git\Feliz\AppRChat\src\main\java\conectorManager\MensajeManager.java
-C:\Users\daniel.mijens.tutor\OneDrive - Accenture\DEV\git\Feliz\AppRChat\src\main\java\dao\Mensaje.java
-C:\Users\daniel.mijens.tutor\OneDrive - Accenture\DEV\git\Feliz\AppRChat\src\main\java\application\IniciarSesionController.java
-C:\Users\daniel.mijens.tutor\OneDrive - Accenture\DEV\git\Feliz\AppRChat\src\main\java\utils\CustomException.java
-C:\Users\daniel.mijens.tutor\OneDrive - Accenture\DEV\git\Feliz\AppRChat\src\main\java\utils\CustomAlerta.java
-C:\Users\daniel.mijens.tutor\OneDrive - Accenture\DEV\git\Feliz\AppRChat\src\main\java\conector\MySQLConstants.java
-C:\Users\daniel.mijens.tutor\OneDrive - Accenture\DEV\git\Feliz\AppRChat\src\main\java\mail\Sender.java
-C:\Users\daniel.mijens.tutor\OneDrive - Accenture\DEV\git\Feliz\AppRChat\src\main\java\Main.java
-C:\Users\daniel.mijens.tutor\OneDrive - Accenture\DEV\git\Feliz\AppRChat\src\main\java\conector\Conector.java
-C:\Users\daniel.mijens.tutor\OneDrive - Accenture\DEV\git\Feliz\AppRChat\src\main\java\conectorManager\UsuarioManager.java
+E:\git\rchat\src\main\java\conector\Conector.java
+E:\git\rchat\src\main\java\sesion\SesionActual.java
+E:\git\rchat\src\main\java\application\IniciarSesionController.java
+E:\git\rchat\src\main\java\sesion\Usuario.java
+E:\git\rchat\src\main\java\mail\CredentialsConstants.java
+E:\git\rchat\src\main\java\Main.java
+E:\git\rchat\src\main\java\application\App.java
+E:\git\rchat\src\main\java\application\LayoutMensajesController.java
+E:\git\rchat\src\main\java\dao\Grupos.java
+E:\git\rchat\src\main\java\application\ListViewGrupos.java
+E:\git\rchat\src\main\java\conectorManager\UsuarioManager.java
+E:\git\rchat\src\main\java\mail\Sender.java
+E:\git\rchat\src\main\java\application\ListViewMensajes.java
+E:\git\rchat\src\main\java\dao\Mensaje.java
+E:\git\rchat\src\main\java\utils\CustomAlerta.java
+E:\git\rchat\src\main\java\conector\MySQLConstants.java
+E:\git\rchat\src\main\java\conectorManager\MensajeManager.java
+E:\git\rchat\src\main\java\application\CrearGrupoController.java
+E:\git\rchat\src\main\java\application\PrincipalController.java
+E:\git\rchat\src\main\java\application\RegistroController.java
+E:\git\rchat\src\main\java\utils\CustomException.java

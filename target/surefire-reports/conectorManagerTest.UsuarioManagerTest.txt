@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: conectorManagerTest.UsuarioManagerTest
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.772 s - in conectorManagerTest.UsuarioManagerTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.298 s - in conectorManagerTest.UsuarioManagerTest
