@@ -17,8 +17,11 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import lombok.Getter;
 import lombok.Setter;
+import utils.CustomAlerta;
 
 /**
  * The Class Sender.
@@ -57,7 +60,7 @@ public class Sender {
 			mailProp.load(getClass().getClassLoader().getResourceAsStream("mail.properties"));
 			credencialProp.load(getClass().getClassLoader().getResourceAsStream("credentials.properties"));
 		} catch (IOException e) {
-			e.printStackTrace();
+			new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "Error al crear el constructor (IOException)", e.getMessage());
 		}
 	}
 
@@ -94,7 +97,7 @@ public class Sender {
 			Transport.send(message);
 			return true;
 		} catch (MessagingException e) {
-			e.printStackTrace();
+			new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "Error al enviar el email", e.getMessage());
 			return false;
 		}
 

@@ -198,10 +198,14 @@ public class PrincipalController implements Initializable {
 						result.getString(4), result.getString(5), result.getString(6), result.getString(7),
 						result.getString(8), result.getInt(9)));
 			}
+			if (!obsListGrupos.isEmpty()) 
 			listViewGrupos.setItems(obsListGrupos);
+			else
+				listViewGrupos.getItems().add(new Grupos("¡Crea un Grupo o unete a uno!"));
 			listViewGrupos.setCellFactory(cell -> new ListViewGrupos());
 		} catch (SQLException e1) {
-			e1.printStackTrace();
+			new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "Error al mostrar los grupos en la BBDD", e1.getMessage());
+
 		}
 	}
 
@@ -264,19 +268,22 @@ public class PrincipalController implements Initializable {
 		if (grupoSeleccionado == null) {
 			new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "No ha seleccionado un grupo",
 					"Elija el grupo del que desea salir");
-		} else {
+		}else if (grupoSeleccionado.getCreador()==null) {
+			new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "El grupo seleccionado no es correcto",
+					"Crea un grupo o unete a uno ya creado");
+		}
+		else {
 			if (grupoSeleccionado.getCreador().equals(usuarioActual)) {
 				borrarGrupo(new ActionEvent()); // Si el creador se sale del grupo se borrara el mismo
-			} else if (!grupoSeleccionado.getUsuario1().equals(null)
-					|| grupoSeleccionado.getUsuario1().equals(usuarioActual))
+			} else if (grupoSeleccionado.getUsuario1()!=(null)
+					&& grupoSeleccionado.getUsuario1().equals(usuarioActual))
 				usuarioABorrar = "usuario1";
-			else if (!grupoSeleccionado.getUsuario2().equals(null)
-					|| grupoSeleccionado.getUsuario2().equals(usuarioActual))
+			else if (grupoSeleccionado.getUsuario2()!=(null)
+					&& grupoSeleccionado.getUsuario2().equals(usuarioActual))
 				usuarioABorrar = "usuario2";
-			else if (!grupoSeleccionado.getUsuario3().equals(null)
-					|| grupoSeleccionado.getUsuario3().equals(usuarioActual))
+			else if (grupoSeleccionado.getUsuario3()!=(null)
+					&& grupoSeleccionado.getUsuario3().equals(usuarioActual))
 				usuarioABorrar = "usuario3";
-			System.out.println(usuarioABorrar);
 			if (!usuarioABorrar.equals("creador")) {
 				try (Connection con = new Conector().getMySQLConnection()) {
 					PreparedStatement salirse = con
@@ -285,6 +292,7 @@ public class PrincipalController implements Initializable {
 					salirse.setInt(2, grupoSeleccionado.getIdGrupo());
 					if (salirse.executeUpdate() > 0) {
 						mostrarMisGrupos();
+						listViewMisMensajes.setVisible(false);
 
 					}
 
@@ -339,7 +347,8 @@ public class PrincipalController implements Initializable {
 					result.getString(5), result.getString(6), result.getString(7), result.getString(8),
 					result.getInt(9));
 		} catch (SQLException e1) {
-			e1.printStackTrace();
+			new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "Error con los grupos en la BBDD",
+					e1.getMessage());
 		} catch (CustomException e) {
 			new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "Error con los grupos", e.getMessage());
 		}
@@ -355,14 +364,25 @@ public class PrincipalController implements Initializable {
 	void mostrarMensajesSelec(MouseEvent event) {
 
 		Grupos grupoSeleccionado = listViewGrupos.getSelectionModel().getSelectedItem();
-		lblNombreGrupo.setText(grupoSeleccionado.getNombre());
-		try {
-			cambiarMensajesMostrados(grupoSeleccionado);
-			listViewMisMensajes.setVisible(true);
-		} catch (SQLTimeoutException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		if (grupoSeleccionado!=null && grupoSeleccionado.getCreador()!=null) {
+			lblNombreGrupo.setText(grupoSeleccionado.getNombre());
+			try {
+				cambiarMensajesMostrados(grupoSeleccionado);
+				if(listViewMisMensajes.getItems().size()==0) {
+					listViewMisMensajes.getItems().add(new Mensaje(-5,"¡Envia tu primer mensaje!","¿A que esperas?"));
+				}
+				listViewMisMensajes.setVisible(true);
+			} catch (SQLTimeoutException e) {
+				new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "Error con mensajes seleccionados en la BBDD",
+						e.getMessage());
+			} catch (SQLException e) {
+				new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "Error con mensajes seleccionados en la BBDD",
+						e.getMessage());
+
+			}
+		}else if (grupoSeleccionado.getCreador()==null) {
+			new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "El grupo seleccionado no es correcto",
+					"Crea un grupo o unete a uno ya creado");
 		}
 	}
 
@@ -414,13 +434,16 @@ public class PrincipalController implements Initializable {
 				cambiarMensajesMostrados(grupoSeleccionado);
 			}
 		} catch (SQLIntegrityConstraintViolationException e) {
-			e.printStackTrace();
+			new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "Error al enviar mensaje en la BBDD",
+					e.getMessage());
 		} catch (SQLTimeoutException e) {
-			e.printStackTrace();
+			new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "Error al enviar mensaje en la BBDD",
+					e.getMessage());
 		} catch (SQLException e) {
-			e.printStackTrace();
+			new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "Error al enviar mensaje en la BBDD",
+					e.getMessage());
 		} catch (CustomException e) {
-			e.printStackTrace();
+			new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "Error al enviar mensaje", e.getMessage());
 		}
 	}
 
@@ -443,17 +466,17 @@ public class PrincipalController implements Initializable {
 						MensajeManager.eliminarMensaje(mensajeABorrar);
 						mostrarMensajesSelec(null);
 					} catch (SQLIntegrityConstraintViolationException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!",
+								"Error al eliminar mensaje en la BBDD", e.getMessage());
 					} catch (SQLTimeoutException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!",
+								"Error al eliminar mensaje en la BBDD", e.getMessage());
 					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!",
+								"Error al eliminar mensaje en la BBDD", e.getMessage());
 					} catch (CustomException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "Error al eliminar mensaje",
+								e.getMessage());
 					}
 				}
 			});

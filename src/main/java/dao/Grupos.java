@@ -58,6 +58,10 @@ public class Grupos {
 
 	/** The id grupo. */
 	private Integer idGrupo;
+	
+	public Grupos(String nombre) {
+		this.nombre = nombre;
+	}
 
 	/**
 	 * To string.

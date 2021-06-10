@@ -87,16 +87,14 @@ public class IniciarSesionController {
 				throw new CustomException("Contraseña incorrecta");
 			}
 		} catch (SQLTimeoutException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "Error al iniciar sesion en la BBDD", e.getMessage());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "Error al iniciar sesion en la BBDD", e.getMessage());
 		} catch (CustomException e) {
 			new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "Datos incorrectos", e.getMessage());
 			;
 		} catch (IOException e) {
-			e.printStackTrace();
+			new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "Error al iniciar sesion (IOException)", e.getMessage());
 		}
 	}
 

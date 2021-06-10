@@ -9,9 +9,12 @@ import dao.Mensaje;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.NodeOrientation;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
+import utils.CustomAlerta;
 
 /**
  * The Class ListViewMensajes.
@@ -48,7 +51,7 @@ public class ListViewMensajes extends ListCell<Mensaje> {
 				vbox.setPadding(new Insets(0));
 				setGraphic(vbox);
 			} catch (IOException e) {
-				e.printStackTrace();
+				new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "Error al hacer updateItem (IOException)", e.getMessage());
 			}
 		} else {
 			setGraphic(null);

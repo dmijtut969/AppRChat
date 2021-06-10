@@ -105,7 +105,7 @@ public class CrearGrupoController {
 		} catch (SQLException e) {
 			new CustomAlerta(new Alert(AlertType.WARNING), "¡Cuidado!", "Datos incorrectos", e.getMessage());
 		} catch (IOException e) {
-			e.printStackTrace();
+			new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "Error al eliminar mensaje (IOException)", e.getMessage());
 		}
 	}
 

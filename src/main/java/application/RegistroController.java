@@ -86,13 +86,16 @@ public class RegistroController {
 	@FXML
 	void registrarse(ActionEvent event) {
 		try {
-			if (UsuarioManager.findByEmailBoolean(textFieldEmail.getText())) {
-				throw new CustomException("Ya se ha registrado ese email");
-			} else if (UsuarioManager.findByNombreBoolean(textFieldNombreUsuario.getText())) {
-				throw new CustomException("Ya se ha registrado ese nombre de usuario");
-			} else if (!passFieldPassword.getText().equals(passFieldRepPassword.getText())){
-				throw new CustomException("No coinciden las passwords");
-			}else {
+			if (textFieldEmail.getText().indexOf("@") < 0 || textFieldEmail.getText().isBlank()) {
+				throw new CustomException("No es un email");
+			} else if (UsuarioManager.findByEmailBoolean(textFieldEmail.getText())) {
+				throw new CustomException("Ya se ha registrado ese email o lo has dejado en blanco");
+			} else if (UsuarioManager.findByNombreBoolean(textFieldNombreUsuario.getText())||textFieldNombreUsuario.getText().isBlank()) {
+
+				throw new CustomException("Ya se ha registrado ese nombre de usuario o lo has dejado en blancos");
+			} else if (!passFieldPassword.getText().equals(passFieldRepPassword.getText())||passFieldPassword.getText().isBlank()) {
+				throw new CustomException("No coinciden las passwords o lo has dejado en blanco");
+			} else {
 				UsuarioManager.create(textFieldNombreUsuario.getText(), passFieldPassword.getText(),
 						textFieldEmail.getText());
 				App.setRoot("iniciarsesion");
@@ -101,15 +104,16 @@ public class RegistroController {
 		} catch (
 
 		SQLTimeoutException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "Error al registrarse en la BBDD",
+					e.getMessage());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "Error al registrarse en la BBDD",
+					e.getMessage());
 		} catch (CustomException e) {
 			new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "No se ha podido registrar", e.getMessage());
 		} catch (IOException e) {
-			e.printStackTrace();
+			new CustomAlerta(new Alert(AlertType.WARNING), "Cuidado!", "Error al registrarse (IOException)",
+					e.getMessage());
 		}
 	}
 
