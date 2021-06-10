@@ -29,6 +29,8 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -148,6 +150,7 @@ public class PrincipalController implements Initializable {
 		listViewGrupos.setPadding(new Insets(0));
 		listViewMisMensajes.setStyle("-fx-font-size: 1.3em;");
 		listViewMisMensajes.setPadding(new Insets(0));
+		listViewMisMensajes.autosize();
 		mostrarMisGrupos();
 		listViewMisMensajes.setVisible(false);
 
@@ -422,6 +425,45 @@ public class PrincipalController implements Initializable {
 	}
 
 	/**
+	 * Delete the selected message.
+	 */
+	@FXML
+	void eliminaEsteMensaje(MouseEvent event) {
+		Mensaje mensajeABorrar = listViewMisMensajes.getSelectionModel().getSelectedItem();
+		if (mensajeABorrar.getEmisor().equals(SesionActual.getUsuarioActual().getNombreUsuario())) {
+			Alert alert = new Alert(Alert.AlertType.WARNING);
+			alert.setTitle("Proceso de borrado de mensaje");
+			alert.setContentText("¿Desea borrar el mensaje?");
+			ButtonType okButton = new ButtonType("Borrar Mensaje", ButtonBar.ButtonData.YES);
+			ButtonType noButton = new ButtonType("No borrar mensaje", ButtonBar.ButtonData.NO);
+			alert.getButtonTypes().setAll(okButton, noButton);
+			alert.showAndWait().ifPresent(button -> {
+				if (button == okButton) {
+					try {
+						MensajeManager.eliminarMensaje(mensajeABorrar);
+						mostrarMensajesSelec(null);
+					} catch (SQLIntegrityConstraintViolationException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (SQLTimeoutException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (CustomException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
+		} else {
+			new CustomAlerta(new Alert(AlertType.INFORMATION), "Proceso de borrado de mensaje",
+					"No eres el propietario del mensaje", "No se ha realizado el borrado");
+		}
+	}
+
+	/**
 	 * Create the fade effect for the group name.
 	 */
 	private void efectoFadeNombreGrupo() {
@@ -434,7 +476,5 @@ public class PrincipalController implements Initializable {
 		fade.setNode(lblNombreGrupo);
 		fade.play();
 	}
-
-	
 
 }

@@ -81,7 +81,7 @@
                                        <children>
                                           <AnchorPane layoutX="-12.0" prefHeight="443.0" prefWidth="1010.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <ListView fx:id="listViewMisMensajes" fixedCellSize="-20.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="443.0" prefWidth="972.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                <ListView fx:id="listViewMisMensajes" fixedCellSize="-20.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#eliminaEsteMensaje" prefHeight="443.0" prefWidth="972.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                              </children>
                                           </AnchorPane>
                                        </children>

@@ -96,14 +96,7 @@ public Mensaje() {
 	public String toString() {					
 		return emisor + "     " + mensaje + "     " + this.hora; 
 	}
-	@Override
-	public boolean equals(Object obj) {
-	
-		Mensaje other = (Mensaje) obj;
-		if (idMensaje != other.idMensaje)
-			return false;		
-		return true;
-	}
+
 	
 	
 	
