@@ -1,8 +1,10 @@
+/*
+ * @author Daniel Mijens Tutor
+ */
 package utils;
 
 /**
  * Class CustomException.
- * @author Daniel Mijens Tutor
  */
 public class CustomException extends Exception{
 

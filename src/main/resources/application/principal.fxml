@@ -19,7 +19,7 @@
          <children>
             <AnchorPane fx:id="header" prefHeight="57.0" prefWidth="1300.0" style="-fx-background-color: linear-gradient(#f57ffc,#65c4c7);">
                <children>
-                  <ImageView fitHeight="56.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="4.0">
+                  <ImageView fitHeight="60.0" fitWidth="290.0" layoutX="67.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="67.0" AnchorPane.topAnchor="1.0">
                      <image>
                         <Image url="@../img/logo%20rchat.png" />
                      </image>
@@ -39,12 +39,17 @@
                      <children>
                         <VBox fx:id="grupos" prefHeight="644.0" prefWidth="290.0">
                            <children>
-                              <AnchorPane prefHeight="559.0" prefWidth="290.0" style="-fx-background-color: linear-gradient(#65c4c7,#f57ffc);">
+                              <AnchorPane prefHeight="559.0" prefWidth="290.0" style="-fx-background-color: #65c4c7;">
                                  <children>
-                                    <ListView fx:id="listViewGrupos" blendMode="SCREEN" fixedCellSize="-10.0" layoutX="13.0" layoutY="12.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#mostrarMensajesSelec" prefHeight="479.0" prefWidth="265.0" />
+                                    <ListView fx:id="listViewGrupos" fixedCellSize="-10.0" layoutX="13.0" layoutY="49.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#mostrarMensajesSelec" prefHeight="443.0" prefWidth="265.0" />
+                                    <Label layoutX="95.0" layoutY="14.0" text="Mis Grupos" textFill="WHITE">
+                                       <font>
+                                          <Font name="Impact" size="22.0" />
+                                       </font>
+                                    </Label>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane prefHeight="200.0" prefWidth="290.0" style="-fx-background-color: #f57ffc;">
+                              <AnchorPane prefHeight="200.0" prefWidth="290.0" style="-fx-background-color: linear-gradient(#65c4c7,#f57ffc);">
                                  <children>
                                     <Button fx:id="btnCrearNuevoGrupo" layoutX="17.0" layoutY="17.0" mnemonicParsing="false" onAction="#crearGrupo" prefHeight="42.0" prefWidth="256.0" text="CREAR NUEVO GRUPO" textAlignment="CENTER" wrapText="true">
                                        <font>

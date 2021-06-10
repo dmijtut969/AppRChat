@@ -2,8 +2,8 @@ unnamed package
 application
 conector
 conectorManager
+conectorManagerTest
 dao
 mail
-rchat
 sesion
 utils

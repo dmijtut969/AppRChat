@@ -12,12 +12,13 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
+
 /**
  * JavaFX App.
  */
 public class App extends Application {
 
-    /** The scene. */
+    /** scene  La escene. */
     private static Scene scene;
     
     /**
@@ -66,7 +67,7 @@ public class App extends Application {
     }
     
     /**
-     * Cambiar res A escena.
+     * Change to the new resolution.
      */
     public static void cambiarResAEscena() {
     	((Stage)scene.getWindow()).sizeToScene();
@@ -74,7 +75,7 @@ public class App extends Application {
     }
     
     /**
-     * Salir stage.
+     * Exit stage.
      */
     public static void salirStage() {
     	((Stage)scene.getWindow()).close();

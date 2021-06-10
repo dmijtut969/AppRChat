@@ -7,23 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * Gets the email.
- *
- * @return the email
- */
+
 @Getter
-
-/**
- * Sets the email.
- *
- * @param email the new email
- */
 @Setter
-
-/**
- * Instantiates a new mensaje.
- */
 @NoArgsConstructor
 public class Usuario implements Comparable<Usuario>{
 	

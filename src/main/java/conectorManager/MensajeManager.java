@@ -45,7 +45,7 @@ public class MensajeManager {
 	}
 
 	/**
-	 * Sacar ultimos mensajes grupo con limite.
+	 * Get last group messages with limit.
 	 *
 	 * @param idGrupo the id grupo
 	 * @param limiteMensajes the limite mensajes
@@ -72,7 +72,7 @@ public class MensajeManager {
 	}
 
 	/**
-	 * Crear mensaje.
+	 * Create message.
 	 *
 	 * @param mensaje the mensaje
 	 * @return true, if successful
@@ -98,7 +98,7 @@ public class MensajeManager {
 	}
 	
 	/**
-	 * Eliminar mensaje.
+	 * Delete message.
 	 *
 	 * @param mensaje the mensaje
 	 * @return true, if successful

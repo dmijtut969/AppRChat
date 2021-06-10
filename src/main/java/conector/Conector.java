@@ -9,9 +9,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-// TODO: Auto-generated Javadoc
 /**
- * Metodo para conectar la base de datos en la nube con la app en Java.
+ * Connect the database in the cloud with the app in Java.
  */
 public class Conector {
 	

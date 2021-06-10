@@ -65,7 +65,7 @@ public class UsuarioManager {
 	}
 	
 	/**
-	 * Find by nombre boolean.
+	 * Find by nombre and return boolean type.
 	 *
 	 * @param nombreUsu the nombre usu
 	 * @return true, if successful
@@ -107,7 +107,7 @@ public class UsuarioManager {
 	}
 
 	/**
-	 * Find by email boolean.
+	 * Find by email and return boolean type.
 	 *
 	 * @param email the email
 	 * @return true, if successful
@@ -126,7 +126,7 @@ public class UsuarioManager {
 	}
 
 	/**
-	 * Creates the.
+	 * Creates the usuario in database.
 	 *
 	 * @param nombreUsu the nombre usu
 	 * @param pass the pass

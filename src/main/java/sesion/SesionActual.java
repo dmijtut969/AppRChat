@@ -1,11 +1,10 @@
 /*
- * 
+ * @author Daniel Mijens Tutor
  */
 package sesion;
 
 /**
  * The Class SesionActual.
- * @author Daniel Mijens Tutor
  */
 public class SesionActual {
 	

@@ -26,13 +26,6 @@ import lombok.Setter;
 public class Sender {
 
 	/**
-	 * Sets the mail prop.
-	 *
-	 * @param mailProp the new mail prop
-	 */
-	@Setter
-	
-	/**
 	 * Gets the mail prop.
 	 *
 	 * @return the mail prop
@@ -69,7 +62,7 @@ public class Sender {
 	}
 
 	/**
-	 * Send.
+	 * Send the email.
 	 *
 	 * @param from the from
 	 * @param to the to
@@ -97,13 +90,11 @@ public class Sender {
 			// Now set the actual message
 			message.setContent(content,"text/html" );
 
-			System.out.println("sending...");
 			// Send message
 			Transport.send(message);
-			System.out.println("Sent message successfully....");
 			return true;
-		} catch (MessagingException mex) {
-			mex.printStackTrace();
+		} catch (MessagingException e) {
+			e.printStackTrace();
 			return false;
 		}
 

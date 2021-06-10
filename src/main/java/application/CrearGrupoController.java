@@ -27,7 +27,7 @@ import utils.CustomException;
  */
 public class CrearGrupoController {
 
-	/** The anchor. */
+	/** The principal anchor. */
 	@FXML
 	private AnchorPane anchor;
 
@@ -78,7 +78,7 @@ public class CrearGrupoController {
 	}
 
 	/**
-	 * Crear grupo.
+	 * Crear un nuevo grupo.
 	 *
 	 * @param event the event
 	 */

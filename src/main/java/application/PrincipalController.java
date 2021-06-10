@@ -37,8 +37,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import javafx.util.Duration;
@@ -50,10 +48,14 @@ import utils.CustomException;
 /**
  * Instantiates a new principal controller.
  */
+
+/**
+ * Instantiates a new principal controller.
+ */
 @NoArgsConstructor
 public class PrincipalController implements Initializable {
 
-	/** The anchor. */
+	/** The principal anchor. */
 	@FXML
 	private AnchorPane anchor;
 
@@ -132,7 +134,7 @@ public class PrincipalController implements Initializable {
 	ObservableList<Grupos> obsListGrupos = FXCollections.observableArrayList();
 
 	/**
-	 * Initialize.
+	 * Initialize app.
 	 *
 	 * @param location  the location
 	 * @param resources the resources
@@ -143,6 +145,7 @@ public class PrincipalController implements Initializable {
 		lblBienvenidaUsuario.setText("¡Bienvenido @" + SesionActual.getUsuarioActual().getNombreUsuario() + "!");
 		efectoFadeNombreGrupo();
 		listViewGrupos.setStyle("-fx-font-size: 1.5em;");
+		listViewGrupos.setPadding(new Insets(0));
 		listViewMisMensajes.setStyle("-fx-font-size: 1.3em;");
 		listViewMisMensajes.setPadding(new Insets(0));
 		mostrarMisGrupos();
@@ -151,7 +154,7 @@ public class PrincipalController implements Initializable {
 	}
 
 	/**
-	 * Cerrar app.
+	 * Close the app.
 	 *
 	 * @param event the event
 	 */
@@ -161,7 +164,7 @@ public class PrincipalController implements Initializable {
 	}
 
 	/**
-	 * Cerrar sesion.
+	 * Log out.
 	 *
 	 * @param event the event
 	 * @throws IOException Signals that an I/O exception has occurred.
@@ -174,7 +177,7 @@ public class PrincipalController implements Initializable {
 	}
 
 	/**
-	 * Mostrar mis grupos.
+	 * Shows the groups in which the current user is.
 	 */
 	void mostrarMisGrupos() {
 		try (Connection con = new Conector().getMySQLConnection()) {
@@ -193,13 +196,14 @@ public class PrincipalController implements Initializable {
 						result.getString(8), result.getInt(9)));
 			}
 			listViewGrupos.setItems(obsListGrupos);
+			listViewGrupos.setCellFactory(cell -> new ListViewGrupos());
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
 	}
 
 	/**
-	 * Crear grupo.
+	 * Create a new group.
 	 *
 	 * @param event the event
 	 * @throws IOException Signals that an I/O exception has occurred.
@@ -211,7 +215,7 @@ public class PrincipalController implements Initializable {
 	}
 
 	/**
-	 * Unirse A grupo.
+	 * Join a group.
 	 *
 	 * @param event the event
 	 */
@@ -244,7 +248,7 @@ public class PrincipalController implements Initializable {
 	}
 
 	/**
-	 * Salir de grupo.
+	 * Leave a group.
 	 *
 	 * @param event the event
 	 * @throws SQLException the SQL exception
@@ -287,7 +291,7 @@ public class PrincipalController implements Initializable {
 	}
 
 	/**
-	 * Borrar grupo.
+	 * Delete a group.
 	 *
 	 * @param event the event
 	 * @return true, if successful
@@ -310,7 +314,7 @@ public class PrincipalController implements Initializable {
 	}
 
 	/**
-	 * Sacar grupo random.
+	 * Draw a random group for future use.
 	 *
 	 * @return the grupos
 	 */
@@ -340,7 +344,7 @@ public class PrincipalController implements Initializable {
 	}
 
 	/**
-	 * Mostrar mensajes selec.
+	 * Displays the messages of the selected group.
 	 *
 	 * @param event the event
 	 */
@@ -360,7 +364,7 @@ public class PrincipalController implements Initializable {
 	}
 
 	/**
-	 * Cambiar mensajes mostrados.
+	 * Change the messages to those of the group passed by parameter.
 	 *
 	 * @param grupoSeleccionado the grupo seleccionado
 	 * @throws SQLTimeoutException the SQL timeout exception
@@ -389,7 +393,7 @@ public class PrincipalController implements Initializable {
 	}
 
 	/**
-	 * Enviar mensaje.
+	 * Send a message.
 	 *
 	 * @param event the event
 	 */
@@ -418,7 +422,7 @@ public class PrincipalController implements Initializable {
 	}
 
 	/**
-	 * Efecto fade nombre grupo.
+	 * Create the fade effect for the group name.
 	 */
 	private void efectoFadeNombreGrupo() {
 		FadeTransition fade = new FadeTransition();
@@ -431,27 +435,6 @@ public class PrincipalController implements Initializable {
 		fade.play();
 	}
 
-	static class Cell extends ListCell<String> {
-		HBox hbox = new HBox();
-		Button btn = new Button("Prueba");
-		Label label = new Label("");
-		Pane pane = new Pane();
-
-		public Cell() {
-			super();
-			hbox.getChildren().addAll(label, pane, btn);
-			HBox.setHgrow(pane, Priority.ALWAYS);
-		}
-
-		public void updateItem(String name, boolean empty) {
-			super.updateItem(name, empty);
-			setText(null);
-			setGraphic(null);
-			if (name != null && !empty) {
-				label.setText(name);
-				setGraphic(hbox);
-			}
-		}
-	}
+	
 
 }

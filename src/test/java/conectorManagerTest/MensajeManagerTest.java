@@ -28,8 +28,8 @@ import sesion.Usuario;
 @ExtendWith(MockitoExtension.class)
 public class MensajeManagerTest {
 	
-	/** The mensaje. */
-	Usuario mensaje;
+	/** The usuario. */
+	Usuario usuario;
 
 	/** The con. */
 	@Mock
@@ -52,7 +52,7 @@ public class MensajeManagerTest {
 	}
 
 	/**
-	 * Find mensaje by grupo OK.
+	 * Test Find mensaje by grupo OK.
 	 */
 	@Test
 	void findMensajeByGrupo_OK(){
@@ -70,7 +70,7 @@ public class MensajeManagerTest {
 	}
 	
 	/**
-	 * Find mensaje by grupo NOT OK.
+	 * Test Find mensaje by grupo NOT OK.
 	 */
 	@Test
 	void findMensajeByGrupo_NOT_OK(){
@@ -88,7 +88,7 @@ public class MensajeManagerTest {
 	}
 	
 	/**
-	 * Sacar ultimos mensajes grupo con limite OK.
+	 * Test Sacar ultimos mensajes grupo con limite OK.
 	 */
 	@Test
 	void sacarUltimosMensajesGrupoConLimite_OK(){
@@ -103,7 +103,7 @@ public class MensajeManagerTest {
 	}
 	
 	/**
-	 * Sacar ultimos mensajes grupo con limite NOT OK.
+	 * Test Sacar ultimos mensajes grupo con limite NOT OK.
 	 */
 	@Test
 	void sacarUltimosMensajesGrupoConLimite_NOT_OK(){

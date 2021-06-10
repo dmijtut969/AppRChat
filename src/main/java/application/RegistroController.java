@@ -24,7 +24,7 @@ import utils.CustomException;
  */
 public class RegistroController {
 
-	/** The anchor. */
+	/** The principal anchor. */
 	@FXML
 	private AnchorPane anchor;
 
@@ -57,7 +57,7 @@ public class RegistroController {
 	private Button btnSalir;
 
 	/**
-	 * Tiene cuenta.
+	 * Switch to scene iniciarsesion.fxml
 	 *
 	 * @param event the event
 	 * @throws IOException Signals that an I/O exception has occurred.
@@ -69,7 +69,7 @@ public class RegistroController {
 	}
 
 	/**
-	 * Cerrar app.
+	 * Close the app.
 	 *
 	 * @param event the event
 	 */
@@ -79,7 +79,7 @@ public class RegistroController {
 	}
 
 	/**
-	 * Registrarse.
+	 * Register a new user in the database.
 	 *
 	 * @param event the event
 	 */

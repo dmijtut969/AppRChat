@@ -1,3 +1,6 @@
+/*
+ * @author Daniel Mijens Tutor
+ */
 package application;
 
 
@@ -10,16 +13,32 @@ import javafx.scene.control.Label;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.text.TextAlignment;
 
+/**
+ * The Class LayoutMensajesController.
+ */
 public class LayoutMensajesController {
 
+	/** The grupo label. */
 	@FXML
 	private Group grupoLabel;
 
+	/**
+	 * Sets the grupo label.
+	 *
+	 * @param grupo the new grupo label
+	 */
 	public void setGrupoLabel(Group grupo) {
 		grupoLabel = grupo;
 	}
 
-	public Group crearLabel(Mensaje mensaje, String styleClass) {
+	/**
+	 * Create a group containing an ellipse that varies depending on the size of a label.
+	 *
+	 * @param mensaje the mensaje
+	 * @param styleClass the style class
+	 * @return the group
+	 */
+	public Group crearGroup(Mensaje mensaje, String styleClass) {
 
 		Label label = new Label(mensaje.getMensaje());
 

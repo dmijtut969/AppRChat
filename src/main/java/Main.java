@@ -3,15 +3,16 @@
  */
 import application.App;
 
+
 /**
- * The Class Main.
+ * Clase Main.
  */
 public class Main {
 
     /**
-     * The main method.
+     * Metodo main
      *
-     * @param args the arguments
+     * @param args argumentos
      */
     public static void main(final String[] args) {
         App.main(args);

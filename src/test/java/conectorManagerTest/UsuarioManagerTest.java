@@ -1,5 +1,5 @@
 /*
- * 
+ * @author Daniel Mijens Tutor
  */
 package conectorManagerTest;
 
@@ -25,7 +25,6 @@ import utils.CustomException;
 
 /**
  * Class UsuarioManagerTest.
- * @author Daniel Mijens Tutor
  */
 @ExtendWith(MockitoExtension.class)
 public class UsuarioManagerTest {
@@ -54,7 +53,7 @@ public class UsuarioManagerTest {
 	}
 
 	/**
-	 * Buscar usuario por ID OK.
+	 * Test Buscar usuario por ID OK.
 	 */
 	@Test
 	void buscarUsuarioPorID_OK(){
@@ -69,7 +68,7 @@ public class UsuarioManagerTest {
 	}
 	
 	/**
-	 * Buscar usuario por ID NOT OK.
+	 * Test Buscar usuario por ID NOT OK.
 	 */
 	@Test
 	void buscarUsuarioPorID_NOT_OK(){
@@ -84,7 +83,7 @@ public class UsuarioManagerTest {
 	}
 	
 	/**
-	 * Buscar usuario por email OK.
+	 * Test Buscar usuario por email OK.
 	 */
 	@Test
 	void buscarUsuarioPorEmail_OK() {
@@ -101,7 +100,7 @@ public class UsuarioManagerTest {
 	}
 	
 	/**
-	 * Buscar usuario por email NOT OK.
+	 * Test Buscar usuario por email NOT OK.
 	 */
 	@Test
 	void buscarUsuarioPorEmail_NOT_OK(){
@@ -118,7 +117,7 @@ public class UsuarioManagerTest {
 	}
 	
 	/**
-	 * Buscar usuario por nombre OK.
+	 * Test Buscar usuario por nombre OK.
 	 */
 	@Test
 	void buscarUsuarioPorNombre_OK(){
@@ -135,7 +134,7 @@ public class UsuarioManagerTest {
 	}
 	
 	/**
-	 * Buscar usuario por nombre NOT OK.
+	 * Test Buscar usuario por nombre NOT OK.
 	 */
 	@Test
 	void buscarUsuarioPorNombre_NOT_OK(){

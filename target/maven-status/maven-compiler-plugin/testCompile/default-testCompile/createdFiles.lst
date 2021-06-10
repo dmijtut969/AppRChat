@@ -1,2 +1,2 @@
-rchat\UsuarioManagerTest.class
-rchat\MensajeManagerTest.class
+conectorManagerTest\MensajeManagerTest.class
+conectorManagerTest\UsuarioManagerTest.class

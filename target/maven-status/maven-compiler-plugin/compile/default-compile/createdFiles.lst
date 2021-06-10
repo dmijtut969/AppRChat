@@ -1,3 +1,4 @@
+application\ListViewGrupos.class
 mail\Sender$1.class
 Main.class
 sesion\Usuario.class
@@ -5,7 +6,6 @@ application\CrearGrupoController.class
 application\PrincipalController.class
 application\RegistroController.class
 application\IniciarSesionController.class
-application\PrincipalController$Cell.class
 sesion\SesionActual.class
 dao\Mensaje.class
 utils\CustomAlerta.class
@@ -16,7 +16,6 @@ application\LayoutMensajesController.class
 dao\Grupos.class
 utils\CustomException.class
 mail\CredentialsConstants.class
-conector\Constructor.class
 conector\Conector.class
 mail\Sender.class
 application\ListViewMensajes.class

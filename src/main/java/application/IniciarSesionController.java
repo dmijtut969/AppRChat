@@ -28,7 +28,7 @@ import utils.CustomException;
  */
 public class IniciarSesionController {
 
-	/** The anchor. */
+	/** The principal anchor. */
 	@FXML
 	private AnchorPane anchor;
 
@@ -52,9 +52,11 @@ public class IniciarSesionController {
 	@FXML
 	private Button btnIniciarSesion;
 
+	/** The btn recordar contra. */
 	@FXML
 	private Button btnRecordarContra;
 
+	/** The txt field email contra. */
 	@FXML
 	private TextField txtFieldEmailContra;
 
@@ -69,7 +71,7 @@ public class IniciarSesionController {
 	}
 
 	/**
-	 * Iniciar sesion.
+	 * Login and show principal.fxml 
 	 *
 	 * @param event the event
 	 */
@@ -99,7 +101,7 @@ public class IniciarSesionController {
 	}
 
 	/**
-	 * No tiene cuenta.
+	 * Show registro.fxml 
 	 *
 	 * @param event the event
 	 * @throws IOException Signals that an I/O exception has occurred.
@@ -110,6 +112,11 @@ public class IniciarSesionController {
 		App.cambiarResAEscena();
 	}
 
+	/**
+	 * Send the password of an email passed by parameter.
+	 *
+	 * @param event the event
+	 */
 	@FXML
 	void recordarContra(ActionEvent event) {
 

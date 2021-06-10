@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"application"},{"l":"conector"},{"l":"conectorManager"},{"l":"dao"},{"l":"mail"},{"l":"rchat"},{"l":"sesion"},{"l":"utils"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"application"},{"l":"conector"},{"l":"conectorManager"},{"l":"conectorManagerTest"},{"l":"dao"},{"l":"mail"},{"l":"sesion"},{"l":"utils"}];updateSearchResults();
