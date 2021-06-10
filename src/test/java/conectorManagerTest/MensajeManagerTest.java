@@ -5,22 +5,29 @@ package conectorManagerTest;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.SQLTimeoutException;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import conectorManager.MensajeManager;
+import dao.Mensaje;
 import sesion.Usuario;
+import utils.CustomException;
 
 /**
  * Class MensajeManagerTest.
@@ -41,7 +48,23 @@ public class MensajeManagerTest {
 
 	/** The usuario mock. */
 	@InjectMocks
-	Usuario usuarioMock = new Usuario();
+	MensajeManager mensajeMock = new MensajeManager();
+	
+//	@Before
+//	public void init() {
+//		Mensaje mensajeVacio = new Mensaje(-10,"","");
+//		Mensaje mensajeMockeado = new Mensaje(-1,"Mockito","Soy un cascaron");
+//
+//		try {
+//			Mockito.when(mensajeMock.crearMensajeMock(mensajeVacio)).thenReturn(mensajeMockeado);
+//		} catch (SQLTimeoutException e) {
+//			e.printStackTrace();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} catch (CustomException e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	/**
 	 * Antes del test.
@@ -50,6 +73,7 @@ public class MensajeManagerTest {
 	void antesDeTest() {
 		System.out.println("--------------INICIO TEST--------------");
 	}
+	
 
 	/**
 	 * Test Find mensaje by grupo OK.
@@ -116,6 +140,23 @@ public class MensajeManagerTest {
 			e.getStackTrace();
 		}
 	}
+	
+//	@Test
+//	void crearNuevoMensaje_OK() {
+//		try {
+//			Mensaje mensajeTest = mensajeMock.crearMensajeMock(new Mensaje(-99,"",""));
+//			System.out.println(mensajeTest.getIdMensaje());
+//			assertEquals(mensajeTest.getIdMensaje(), -1);
+//		} catch (SQLIntegrityConstraintViolationException e) {
+//			e.printStackTrace();
+//		} catch (SQLTimeoutException e) {
+//			e.printStackTrace();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} catch (CustomException e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
 	/**
 	 * Despues de test.

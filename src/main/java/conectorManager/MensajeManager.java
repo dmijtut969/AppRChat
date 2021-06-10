@@ -98,6 +98,32 @@ public class MensajeManager {
 	}
 	
 	/**
+	 * Create message.
+	 *
+	 * @param mensaje the mensaje
+	 * @return true, if successful
+	 * @throws SQLIntegrityConstraintViolationException the SQL integrity constraint violation exception
+	 * @throws SQLTimeoutException the SQL timeout exception
+	 * @throws SQLException the SQL exception
+	 * @throws CustomException the custom exception
+	 */
+	public Mensaje crearMensajeMock(Mensaje mensaje)
+			throws SQLIntegrityConstraintViolationException, SQLTimeoutException, SQLException, CustomException {
+		try (Connection con = new Conector().getMySQLConnection()) {
+			PreparedStatement query = con
+					.prepareStatement("INSERT INTO Mensaje(idGrupo,emisor,mensaje,fecha) VALUES (?,?,?,?)");
+			query.setInt(1, mensaje.getIdGrupo());
+			query.setString(2, mensaje.getEmisor());
+			query.setString(3, mensaje.getMensaje());
+			query.setString(4, mensaje.getHora());
+			if (query.executeUpdate() > 0)
+				return mensaje;
+			else
+				return new Mensaje();
+		}
+	}
+	
+	/**
 	 * Delete message.
 	 *
 	 * @param mensaje the mensaje
